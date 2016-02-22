@@ -25,3 +25,9 @@ So that I can advertise
 I want to be able to create a space
 ```
 
+```
+As a user
+So that I can list all of my property's
+I want to be able to create multiple spaces
+```
+:construction:
