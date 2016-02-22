@@ -19,3 +19,10 @@
 
 ###Implemented User Stories
 
+```
+As a User
+So that I can advertise
+I want to be able to create a space
+```
+:construction:
+
