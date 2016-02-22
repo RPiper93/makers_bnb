@@ -9,7 +9,7 @@
 
 #####Details
 - Date created: 22/02/16 @ 14:24
-- Date last updated: 22/02/16 @ 14:25
+- Date last updated: 22/02/16 @ 19:10
 
 ###Description
 
@@ -23,4 +23,3 @@ As a user
 So that I can post spaces
 I want to be able to sign-up
 ```
-:construction:

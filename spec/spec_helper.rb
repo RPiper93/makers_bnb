@@ -12,7 +12,7 @@ Capybara.app = MakersBnb
 RSpec.configure do |config|
   config.include Capybara::DSL
 
- config.before(:suite) do
+  config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
   end
