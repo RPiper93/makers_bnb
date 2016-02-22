@@ -7,12 +7,12 @@ class MakersBnb < Sinatra::Base
   enable :sessions
 
   get '/spaces' do
-    @space = session[:space]
+    @spaces =Space.all
     erb :spaces
   end
 
   post '/spaces' do
-    session[:space] = Space.new
+    Space.create
     redirect('/spaces')
   end
 

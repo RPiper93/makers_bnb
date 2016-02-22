@@ -1,8 +1,6 @@
 class Space
-  def initialize
-    @name = "Listing"
-  end
+include DataMapper::Resource  
 
-  attr_reader :name
+property :id, Serial
 
 end
