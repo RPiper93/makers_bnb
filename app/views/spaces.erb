@@ -1,14 +1,8 @@
-<html>
-<head>
-  <title>All Spaces | MakersBnB</title>
-</head>
+<% @title="All Spaces | MakersBnB" %>
 
-<body>
-  <% if @space %>
-  <h4><%= @space.name %></h4>
-  <% end %>
-  <form action="/spaces/new" method="get">
-    <input type="submit" value="List a Space">
-  </form>
-</body>
-</html>
+<% if @space %>
+<h4><%= @space.name %></h4>
+<% end %>
+<form action="/spaces/new" method="get">
+  <input type="submit" value="List a Space">
+</form>
