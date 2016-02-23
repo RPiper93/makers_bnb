@@ -67,4 +67,9 @@ So that I can end my Makers BNB session
 I want to be able to sign-out
 ```
 
+```
+As a user
+So I can show when my space is free
+I want to input a range of dates
+```
 

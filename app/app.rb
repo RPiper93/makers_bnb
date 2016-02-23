@@ -61,9 +61,12 @@ class MakersBnb < Sinatra::Base
 
   post '/spaces' do
     Space.create(
-      name: params[:name],
-      description: params[:description],
-      price: params[:price])
+                name: params[:name],
+                description: params[:description],
+                price: params[:price],
+                date_from: params[:date_from],
+                date_to: params[:date_to]
+    )
     redirect('/spaces')
   end
 
@@ -71,12 +74,16 @@ class MakersBnb < Sinatra::Base
     erb :spaces_new
   end
 
+  get '/space/:id' do
+    @space = Space.get(params[:id])
+    erb :view_space
+  end
+
   helpers do 
     def current_user
       User.get(session[:user])
     end
   end
-
   # start the server if ruby file executed directly
   run! if app_file == $0
 end
