@@ -44,6 +44,7 @@ I want to be able to sign-in
 
 ```
 As a user
+
 So that I can identify my property's
 I want to be able to give each space a name
 ```
@@ -66,3 +67,4 @@ So that I can end my Makers BNB session
 I want to be able to sign-out
 ```
 :construction:
+
