@@ -59,3 +59,10 @@ As a user
 So that I can put a value on my space
 I want to be able to list the price per night
 ```
+
+```
+As a user
+So that I can end my Makers BNB session
+I want to be able to sign-out
+```
+:construction:
