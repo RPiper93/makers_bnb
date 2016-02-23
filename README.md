@@ -35,3 +35,10 @@ As a user
 So that I can list all of my property's
 I want to be able to create multiple spaces
 ```
+
+```
+As a user
+So that I can book spaces or list spaces
+I want to be able to sign-in
+```
+:construction:
