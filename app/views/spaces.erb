@@ -9,7 +9,7 @@
     <li>
       <article>
         <header>
-        <h4><%= space.name %></h4>
+            <h4><a href="space/<%= space.id %>"><%= space.name %></a></h4>
         </header>
         <p><%= space.description %></p>
         <p>Price: £<%= sprintf("%0.02f", space.price) %></p>

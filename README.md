@@ -52,3 +52,8 @@ As a user
 So that I can put a value on my space
 I want to be able to list the price per night
 ```
+```
+As a user
+So I can show when my space is free
+I want to input a range of dates
+```
