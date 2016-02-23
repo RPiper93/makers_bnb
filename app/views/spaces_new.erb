@@ -2,5 +2,16 @@
 
 <h2>List a Space</h2>
 <form action="/spaces" method="post">
+  <label for="name">
+    Name:
+    <input type="text" name="name">
+  </label>
+  <label for="description">
+    Description:
+    <textarea name="description" cols="30" rows="10"></textarea>
+  </label>
+  <label for='price'>
+    <input type='number' name='price' />
+  </label>
   <input type="submit" value="List a Space">
 </form>

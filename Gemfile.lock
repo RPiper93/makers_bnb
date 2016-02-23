@@ -118,4 +118,4 @@ DEPENDENCIES
   sinatra-flash
 
 BUNDLED WITH
-   1.11.2
+   1.12.0.pre.1

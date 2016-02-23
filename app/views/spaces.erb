@@ -7,10 +7,20 @@
 <% @title="All Spaces | MakersBnB" %>
 
 <% if @spaces %>
-<ul><% @spaces.each do |space| %>
-<li><%= space.id %></li>
-<% end %></ul>
+  <ul><% @spaces.each do |space| %>
+    <li>
+      <article>
+        <header>
+        <h4><%= space.name %></h4>
+        </header>
+        <p><%= space.description %></p>
+        <p>Price: £<%= sprintf("%0.02f", space.price) %></p>
+      </article>
+    </li>
+    <% end %>
+  </ul>
 <% end %>
+
 <form action="/spaces/new" method="get">
   <input type="submit" value="List a Space">
 </form>

@@ -20,15 +20,15 @@ class User
   end
 
   def self.authenticate(email,password)
-  user = first(email: email)
+    user = first(email: email)
     if user 
       if BCrypt::Password.new(user.password_hash) == password
-      user 
+        user 
       else 
-      0
+        :incorrect_password
       end
     else
-      return -1
+      :nonexistent_user
     end   
   end
 end

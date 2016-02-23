@@ -35,15 +35,15 @@ class MakersBnb < Sinatra::Base
 
   post '/user/sign_in' do 
     user = User.authenticate(params[:email],params[:password])
-    if user == -1
-    flash.next[:errors] = ["User does not exist"]
-    redirect('/user/sign_in')
-    elsif user == 0 
-    flash.next[:errors] = ["Incorrect password"]
-    redirect('/user/sign_in')
+    if user == :nonexistent_user
+      flash.next[:errors] = ["User does not exist"]
+      redirect('/user/sign_in')
+    elsif user == :incorrect_password 
+      flash.next[:errors] = ["Incorrect password"]
+      redirect('/user/sign_in')
     else 
-    session[:user] = user.id
-    redirect('/spaces')
+      session[:user] = user.id
+      redirect('/spaces')
     end
   end
   
@@ -54,13 +54,17 @@ class MakersBnb < Sinatra::Base
   end
 
   post '/spaces' do
-    Space.create
+    Space.create(
+                name: params[:name],
+                description: params[:description],
+                price: params[:price])
     redirect('/spaces')
   end
 
   get '/spaces/new' do
     erb :spaces_new
   end
+
   # start the server if ruby file executed directly
   run! if app_file == $0
 end

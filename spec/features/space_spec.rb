@@ -1,25 +1,23 @@
-
 feature "Create a space" do
-  scenario "Can create a space" do
-    visit('/spaces')
-    expect(page.status_code).to eq 200
-    expect(page).to_not have_content('1')
-    click_button('List a Space')
-    expect(current_path).to eq "/spaces/new"
-    expect(page).to have_content("List a Space")
-    click_button('List a Space')
-    expect(current_path).to eq '/spaces'
-    expect(page).to have_content('1')
+
+  scenario 'can create multiple spaces with names' do
+    create_user
+    create_space(name: "Iryna's space")
+    create_space
+    expect(page).to have_content("Iryna's space")
+    expect(page).to have_content("Sam's space")
   end
 
-feature 'Create multiple spaces' do
-  scenario 'can create multiple spaces' do
-    create_space
-    create_space
-    expect(page).to have_content('1 2')
+  scenario 'can add a description' do
+    create_user
+    create_space(name: "Iryna's space", description: "Some beautiful space")
+    expect(page).to have_content("Some beautiful space")
   end
-end
 
-
+  scenario 'can add a price' do
+    create_user
+    create_space(price: 30)
+    expect(page).to have_content("Price: £30.00")
+  end
 
 end
