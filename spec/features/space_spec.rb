@@ -20,4 +20,12 @@ feature "Create a space" do
     expect(page).to have_content("Price: £30.00")
   end
 
+  scenario 'can add date from and to' do
+    create_user
+    create_space(date_from: Date.new(2016,02,23), date_to: Date.new(2016,02,24))
+    click_link("Sam's space")
+    expect(page.status_code).to eq(200)
+    expect(page).to have_content("Available From: 23/02/16 Available To: 24/02/16")
+  end
+
 end

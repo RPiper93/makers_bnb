@@ -1,0 +1,7 @@
+<% @title= "#{@space.name} | MakersBnB" %>
+<main>
+    <h2><%= @space.name %></h2>
+    <div>
+        Available From: <%= @space.format_date(@space.date_from) %> Available To: <%= @space.format_date(@space.date_to) %> 
+    </div>
+</main>

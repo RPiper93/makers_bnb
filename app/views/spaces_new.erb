@@ -4,14 +4,28 @@
 <form action="/spaces" method="post">
   <label for="name">
     Name:
-    <input type="text" name="name">
+    <input type="text" name="name" required>
   </label>
+
   <label for="description">
     Description:
     <textarea name="description" cols="30" rows="10"></textarea>
   </label>
+
   <label for='price'>
-    <input type='number' name='price' />
+     Price:
+    <input type='number' name='price' step="any" required/>
   </label>
+
+  <label for='date_from'>
+      Available From:
+      <input type='date' name='date_from' required/>
+  </label>
+
+  <label for="date_to">
+      Available To:
+      <input type='date' name='date_to' required/>
+  </label>
+
   <input type="submit" value="List a Space">
 </form>
