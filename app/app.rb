@@ -9,10 +9,16 @@ class MakersBnb < Sinatra::Base
   enable :sessions
   set :session_secret, 'super secret'
   register Sinatra::Flash
+  use Rack::MethodOverride
 
   get '/' do
     erb :index
   end
+
+  delete '/' do 
+    session[:user] = nil
+    redirect ('/')
+  end 
 
   post '/user/new' do
     user = User.create(first_name: params[:first_name],
