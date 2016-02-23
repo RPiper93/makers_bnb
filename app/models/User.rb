@@ -21,11 +21,14 @@ class User
 
   def self.authenticate(email,password)
   user = first(email: email)
-  puts BCrypt::Password.new(user.password_hash) if user
-  if user && BCrypt::Password.new(user.password_hash) == password
-  user 
-  else nil
-  end   
-
+    if user 
+      if BCrypt::Password.new(user.password_hash) == password
+      user 
+      else 
+      0
+      end
+    else
+      return -1
+    end   
   end
 end
