@@ -22,16 +22,16 @@ class MakersBnb < Sinatra::Base
 
   post '/user/new' do
     user = User.create(first_name: params[:first_name],
-                last_name: params[:last_name],
-                email: params[:email],
-                password: params[:password],
-                password_confirmation: params[:password_confirmation])
+      last_name: params[:last_name],
+      email: params[:email],
+      password: params[:password],
+      password_confirmation: params[:password_confirmation])
     if user.saved? 
-    session[:user] = user.id
-    redirect('/spaces')
+      session[:user] = user.id
+      redirect('/spaces')
     else 
-    flash.next[:errors] = user.errors.full_messages
-    redirect('/')
+      flash.next[:errors] = user.errors.full_messages
+      redirect('/')
     end
   end
 
@@ -61,9 +61,9 @@ class MakersBnb < Sinatra::Base
 
   post '/spaces' do
     Space.create(
-                name: params[:name],
-                description: params[:description],
-                price: params[:price])
+      name: params[:name],
+      description: params[:description],
+      price: params[:price])
     redirect('/spaces')
   end
 
@@ -71,8 +71,10 @@ class MakersBnb < Sinatra::Base
     erb :spaces_new
   end
 
-  def current_user
-  User.get(session[:user])
+  helpers do 
+    def current_user
+      User.get(session[:user])
+    end
   end
 
   # start the server if ruby file executed directly
