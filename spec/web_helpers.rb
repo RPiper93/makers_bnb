@@ -1,8 +1,11 @@
-def create_space(name, description="Description of Space")
+def create_space(name: "Sam's space",
+                 description: "Description of Space",
+                 price: 40)
   visit('/spaces')
   click_button('List a Space')
   fill_in(:name, with: name)
   fill_in(:description, with: description)
+  fill_in(:price, with: price)
   click_button('List a Space')
 end
 
