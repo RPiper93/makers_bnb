@@ -23,3 +23,9 @@ As a user
 So that I can post spaces
 I want to be able to sign-up
 ```
+
+```
+As a User
+So that I can advertise
+I want to be able to create a space
+```
