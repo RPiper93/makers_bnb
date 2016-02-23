@@ -57,12 +57,20 @@ class MakersBnb < Sinatra::Base
     Space.create(
                 name: params[:name],
                 description: params[:description],
-                price: params[:price])
+                price: params[:price],
+                date_from: params[:date_from],
+                date_to: params[:date_to]
+    )
     redirect('/spaces')
   end
 
   get '/spaces/new' do
     erb :spaces_new
+  end
+
+  get '/space/:id' do
+    @space = Space.get(params[:id])
+    erb :view_space
   end
 
   # start the server if ruby file executed directly
