@@ -1,5 +1,7 @@
 <h1>
+  <% if @user %> 
   Welcome <%= @user.first_name %>
+  <% end %> 
 </h1>
 
 <% @title="All Spaces | MakersBnB" %>

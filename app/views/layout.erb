@@ -8,6 +8,13 @@
     <header>
       <div class="logo">Make</div>
     </header>
+       <% if flash[:errors] && !flash[:errors].empty? %>
+      <ul id = 'errors'>
+        <% flash[:errors].each do |error| %>
+          <li> <%= error %> </li>
+         <% end %> 
+       <% end %> 
+      </ul> 
     <%= yield %>
   </body>
 </html>

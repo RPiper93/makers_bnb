@@ -38,6 +38,12 @@ I want to be able to create multiple spaces
 
 ```
 As a user
+So that I can book spaces or list spaces
+I want to be able to sign-in
+```
+
+```
+As a user
 So that I can identify my property's
 I want to be able to give each space a name
 ```
@@ -47,6 +53,7 @@ As a user
 So that I can list my property's features,
 I want to be able to provide a short description
 ```
+
 ```
 As a user
 So that I can put a value on my space
