@@ -9,7 +9,7 @@
 
 #####Details
 - Date created: 22/02/16 @ 14:24
-- Date last updated: 22/02/16 @ 14:25
+- Date last updated: 22/02/16 @ 19:10
 
 ###Description
 
@@ -18,6 +18,11 @@
 ###Technologies
 
 ###Implemented User Stories
+```
+As a user
+So that I can post spaces
+I want to be able to sign-up
+```
 
 ```
 As a User
@@ -30,4 +35,3 @@ As a user
 So that I can list all of my property's
 I want to be able to create multiple spaces
 ```
-:construction:
