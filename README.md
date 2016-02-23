@@ -44,6 +44,7 @@ I want to be able to sign-in
 
 ```
 As a user
+
 So that I can identify my property's
 I want to be able to give each space a name
 ```
@@ -59,8 +60,16 @@ As a user
 So that I can put a value on my space
 I want to be able to list the price per night
 ```
+
+```
+As a user
+So that I can end my Makers BNB session
+I want to be able to sign-out
+```
+
 ```
 As a user
 So I can show when my space is free
 I want to input a range of dates
 ```
+

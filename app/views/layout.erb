@@ -1,20 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title><%= !@title ? @title="MakersBnB": @title %></title>
-  </head>
-  <body>
-    <header>
-      <div class="logo">Make</div>
-    </header>
-       <% if flash[:errors] && !flash[:errors].empty? %>
-      <ul id = 'errors'>
-        <% flash[:errors].each do |error| %>
-          <li> <%= error %> </li>
-         <% end %> 
-       <% end %> 
-      </ul> 
-    <%= yield %>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <title><%= !@title ? @title="MakersBnB": @title %></title>
+</head>
+<body>
+  <header>
+    <div class="logo">Make</div>
+    Welcome <%=current_user.first_name if current_user%>
+    <div id = 'ui'>
+      <form action ='/' method = 'post'> 
+        <%if current_user%>
+        <input type = 'hidden' name = '_method' value = 'delete' />
+        <input type = 'submit' value = "Sign out" />
+        <% else %> 
+        <button type = 'submit' formaction = '/user/sign_in' formmethod = 'get' > Sign in 
+        </button>
+        <button type = 'submit' formaction = '/' formmethod = 'get' > Sign up 
+        </button>
+        <%end%>
+    </form>  
+    
+</div> 
+</header>
+<% if flash[:errors] && !flash[:errors].empty? %>
+<ul id = 'errors'>
+    <% flash[:errors].each do |error| %>
+    <li> <%= error %> </li>
+    <% end %> 
+    <% end %> 
+</ul> 
+<%= yield %>
+</body>
 </html>
