@@ -23,13 +23,13 @@ class MakersBnb < Sinatra::Base
   end
 
   get '/spaces' do
+    @spaces = Space.all
     @user = User.get(session[:user])
-    @space = session[:space]
     erb :spaces
   end
 
   post '/spaces' do
-    session[:space] = Space.new
+    Space.create
     redirect('/spaces')
   end
 
