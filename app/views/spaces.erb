@@ -5,9 +5,10 @@
 <% @title="All Spaces | MakersBnB" %>
 
 <% if @spaces %>
-<ul><% @spaces.each do |space| %>
-<li><%= space.id %></li>
-<% end %></ul>
+  <ul><% @spaces.each do |space| %>
+    <li><%= space.name %></li>
+    <% end %>
+  </ul>
 <% end %>
 <form action="/spaces/new" method="get">
   <input type="submit" value="List a Space">

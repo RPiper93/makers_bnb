@@ -1,6 +1,6 @@
 class Space
-include DataMapper::Resource  
+  include DataMapper::Resource
 
-property :id, Serial
-
+  property :id, Serial
+  property :name, String, required: true
 end
