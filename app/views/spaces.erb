@@ -6,7 +6,14 @@
 
 <% if @spaces %>
   <ul><% @spaces.each do |space| %>
-    <li><%= space.name %></li>
+    <li>
+      <article>
+        <header>
+        <h4><%= space.name %></h4>
+        </header>
+        <p><%= space.description %></p>
+      </article>
+    </li>
     <% end %>
   </ul>
 <% end %>
