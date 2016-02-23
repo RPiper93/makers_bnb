@@ -65,6 +65,10 @@ class MakersBnb < Sinatra::Base
     erb :spaces_new
   end
 
+  def current_user
+  User.get(session[:user])
+  end
+
   # start the server if ruby file executed directly
   run! if app_file == $0
 end

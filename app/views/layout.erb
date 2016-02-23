@@ -7,7 +7,15 @@
   <body>
     <header>
       <div class="logo">Make</div>
-    </header>
+      welcome <%=current_user.name if current_user%>
+      <div id = 'ui'>
+      <%if current_user %>
+      <form action ='/' method = 'post'> 
+
+      </form>  
+      <%end%>
+      </div> 
+      </header>
        <% if flash[:errors] && !flash[:errors].empty? %>
       <ul id = 'errors'>
         <% flash[:errors].each do |error| %>

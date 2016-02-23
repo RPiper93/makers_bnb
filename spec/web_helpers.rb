@@ -18,3 +18,12 @@ def create_user
   fill_in :password_confirmation, with: "123abc"
   click_button "Sign-up"
 end
+
+def sign_in
+  User.create(first_name: "Sam", last_name: "Morgan", 
+  email: "sam@email.com", password: "Abc123", password_confirmation: "Abc123")
+  visit '/user/sign_in'
+  fill_in :email, with: "sam@email.com"
+  fill_in(:password, with: "Abc123")
+  click_button "Submit"
+end
