@@ -12,11 +12,13 @@
         <h4><%= space.name %></h4>
         </header>
         <p><%= space.description %></p>
+        <p>Price: £<%= sprintf("%0.02f", space.price) %></p>
       </article>
     </li>
     <% end %>
   </ul>
 <% end %>
+
 <form action="/spaces/new" method="get">
   <input type="submit" value="List a Space">
 </form>

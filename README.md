@@ -47,3 +47,8 @@ As a user
 So that I can list my property's features,
 I want to be able to provide a short description
 ```
+```
+As a user
+So that I can put a value on my space
+I want to be able to list the price per night
+```
