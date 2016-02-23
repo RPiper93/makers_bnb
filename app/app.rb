@@ -22,6 +22,20 @@ class MakersBnb < Sinatra::Base
     redirect('/spaces')
   end
 
+  get '/user/sign_in' do 
+    erb :sign_in
+  end
+
+  post '/user/sign_in' do 
+    user = User.authenticate(params[:email],params[:password])
+    if user 
+    session[:user] = user.id
+    redirect('/spaces')
+    else 
+    erb :sign_in
+    end
+  end
+  
   get '/spaces' do
     @spaces = Space.all
     @user = User.get(session[:user])
