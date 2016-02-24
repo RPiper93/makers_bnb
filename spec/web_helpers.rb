@@ -2,7 +2,8 @@ def create_space(name: "Sam's space",
                  description: "Description of Space",
                  price: 40,
                  date_from: Date.new(2016,02,23),
-                 date_to: Date.new(2016,02,24))
+                 date_to: Date.new(2016,02,24),
+                 user_id: 1)
   visit('/spaces')
   click_button('List a Space')
   fill_in(:name, with: name)
