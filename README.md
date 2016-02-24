@@ -78,3 +78,9 @@ As a user
 So that I can make changes to my listing
 I want to be able to update my space
 ```
+
+```
+As a user
+So that I can make a booking
+I want to submit a request
+```

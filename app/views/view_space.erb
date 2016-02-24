@@ -4,4 +4,18 @@
     <div>
         Available From: <%= @space.format_date(@space.date_from) %> Available To: <%= @space.format_date(@space.date_to) %> 
     </div>
+
+    <form action='/request/new' method='post'>
+        <label for='start_date'>
+            Start Date:
+            <input type='date' name='start_date' />
+        </label>
+
+        <label for='end_date'>
+            End Date:
+            <input type='date' name='end_date' />
+        </label>
+        <input type='hidden' name='space_id' value= <%= @space.id %> />
+        <input type='submit' value='Request a booking'>
+    </form>  
 </main>

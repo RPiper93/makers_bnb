@@ -20,11 +20,11 @@ def create_user(first_name: "Sam",
                 password: "123abc",
                 password_confirmation: "123abc")
   visit('/')
-  fill_in :first_name, with: first_name
-  fill_in :last_name, with: last_name
-  fill_in :email, with: email
-  fill_in :password, with: password
-  fill_in :password_confirmation, with: password_confirmation
+  fill_in :first_name, with: first_name 
+  fill_in :last_name, with: last_name 
+  fill_in :email, with: email 
+  fill_in :password, with: password 
+  fill_in :password_confirmation, with: password_confirmation 
   click_button "Sign-up"
 end
 
