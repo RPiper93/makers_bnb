@@ -2,7 +2,8 @@ def create_space(name: "Sam's space",
                  description: "Description of Space",
                  price: 40,
                  date_from: Date.new(2016,02,23),
-                 date_to: Date.new(2016,02,24))
+                 date_to: Date.new(2016,02,24),
+                 user_id: 1)
   visit('/spaces')
   click_button('List a Space')
   fill_in(:name, with: name)
@@ -17,8 +18,7 @@ def create_user(first_name: "Sam",
                 last_name: "Morgan",
                 email: "sam@email.com",
                 password: "123abc",
-                password_confirmation: "123abc"
-               )
+                password_confirmation: "123abc")
   visit('/')
   fill_in :first_name, with: first_name 
   fill_in :last_name, with: last_name 

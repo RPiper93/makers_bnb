@@ -14,7 +14,6 @@ class MakersBnb < Sinatra::Base
     erb :index
   end
 
- 
   helpers do 
     def current_user
       User.get(session[:user])

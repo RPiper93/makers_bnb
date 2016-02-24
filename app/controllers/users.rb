@@ -24,15 +24,15 @@ class MakersBnb < Sinatra::Base
   end
 
   post '/user/sign_in' do 
-    user = User.authenticate(params[:email],params[:password])
-    if user == :nonexistent_user
+    @user = User.authenticate(params[:email],params[:password])
+    if @user == :nonexistent_user
       flash.next[:errors] = ["User does not exist"]
       redirect('/user/sign_in')
-    elsif user == :incorrect_password 
+    elsif @user == :incorrect_password 
       flash.next[:errors] = ["Incorrect password"]
       redirect('/user/sign_in')
     else 
-      session[:user] = user.id
+      session[:user] = @user.id
       redirect('/spaces')
     end
   end

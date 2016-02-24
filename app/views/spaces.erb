@@ -4,7 +4,7 @@
   <% end %> 
 </h1>
 
-<% @title="All Spaces | MakersBnB" %>
+<% @title="All Spaces | " %>
 
 <% if @spaces %>
   <ul><% @spaces.each do |space| %>
@@ -15,6 +15,11 @@
         </header>
         <p><%= space.description %></p>
         <p>Price: £<%= sprintf("%0.02f", space.price) %></p>
+        <% if space.user_id == @user.id %>
+          <form action="/spaces/update" method="POST">  <input type="hidden" name="space_id" value="<%= space.id %>"></input>
+            <input type="submit" value="Update Space">
+          </form>
+        <% end %>
       </article>
     </li>
     <% end %>

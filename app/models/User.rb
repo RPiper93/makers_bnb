@@ -10,6 +10,8 @@ class User
   property :password_hash, Text, required: true
   has n, :requests, through: Resource
   
+  has n, :spaces
+
   attr_reader :password
   attr_accessor :password_confirmation
 
