@@ -72,6 +72,13 @@ As a user
 So I can show when my space is free
 I want to input a range of dates
 ```
+
+```
+As a user
+So that I can make changes to my listing
+I want to be able to update my space
+```
+
 ```
 As a user
 So that I can make a booking
