@@ -16,7 +16,8 @@ class MakersBnb < Sinatra::Base
 
   helpers do
     def current_user
-      User.get(session[:user])
+      puts session[:user]
+      @user ||= User.get(session[:user])
     end
 
     def format_date(date)

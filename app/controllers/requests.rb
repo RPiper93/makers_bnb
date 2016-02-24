@@ -3,8 +3,11 @@ class MakersBnb < Sinatra::Base
 	post '/request/new' do
 		user = current_user
 		space = Space.get(params[:space_id])
-		request = Request.create(start_date: params[:start_date],
-			end_date: params[:end_date], status: "Not Confirmed", user_id: user.id)
+		request = Request.new(start_date: params[:start_date],
+			end_date: params[:end_date], status: "Not Confirmed")
+		puts current_user.id
+		request.user_id = current_user.id
+		request.save
 		space.requests << request
 		space.save
 		if request.saved?
@@ -21,8 +24,10 @@ class MakersBnb < Sinatra::Base
 	end
 
   get '/requests/confirm/:id' do
-    @request = Request.get(params[:id])
-    @requester = User.get(@request.user_id)
+  
+  	@request = Request.get(params[:id])
+  	@request.user_id
+    # # @requester = User.get(3)
     erb :confirm_requests
   end
 

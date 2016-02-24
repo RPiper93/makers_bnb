@@ -3,7 +3,6 @@
 <h2>Request for '<%= @request.spaces.map(&:name).join %>'</h2>
 
 <h4>
-  From: <%= @requester.email %>
   Date: <%= format_date(@request.start_date) %> - <%= format_date(@request.end_date) %>
 </h4>
 
