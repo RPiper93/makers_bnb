@@ -1,4 +1,4 @@
-<% @title="List a Space | MakersBnB" %>
+<% @title="#{@space ? "Update Space" : "List a Space"} | " %>
 
 <h2><%= @space ? "Update Space" : "List a Space" %></h2>
 <form action="/spaces" method="post">

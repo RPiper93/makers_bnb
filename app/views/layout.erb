@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title><%= !@title ? @title="MakersBnB": @title %></title>
+  <title><%= @title if @title %>MakersBnB</title>
 </head>
 <body>
   <header>
