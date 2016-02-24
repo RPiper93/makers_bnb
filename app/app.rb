@@ -14,13 +14,17 @@ class MakersBnb < Sinatra::Base
     erb :index
   end
 
-  helpers do 
+  helpers do
     def current_user
       User.get(session[:user])
     end
+    def reset_date_filter
+      session[:date_from] = nil
+      session[:date_to] = nil
+    end
   end
 
-    
+
 
   # start the server if ruby file executed directly
   run! if app_file == $0

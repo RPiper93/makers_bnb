@@ -1,12 +1,27 @@
 <h1>
-  <% if @user %> 
+  <% if @user %>
   Welcome <%= @user.first_name %>
-  <% end %> 
+  <% end %>
 </h1>
 
 <% @title="All Spaces | " %>
 
 <% if @spaces %>
+  <form action="/spaces/filter" method="post">
+    <label>
+      Available from
+      <input type="date" name="date_from">
+    </label>
+    <label>
+      Available to
+      <input type="date" name="date_to">
+    </label>
+    <input type="submit" value="Filter Spaces">
+  </form>
+  <form action="/spaces" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="Reset">
+  </form>
   <ul><% @spaces.each do |space| %>
     <li>
       <article>
