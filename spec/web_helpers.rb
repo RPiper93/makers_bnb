@@ -14,13 +14,17 @@ def create_space(name: "Sam's space",
   click_button('List a Space')
 end
 
-def create_user
+def create_user(first_name: "Sam",
+                last_name: "Morgan",
+                email: "sam@email.com",
+                password: "123abc",
+                password_confirmation: "123abc")
   visit('/')
-  fill_in :first_name, with: "Sam"
-  fill_in :last_name, with: "Morgan"
-  fill_in :email, with: "sam@email.com"
-  fill_in :password, with: "123abc"
-  fill_in :password_confirmation, with: "123abc"
+  fill_in :first_name, with: first_name
+  fill_in :last_name, with: last_name
+  fill_in :email, with: email
+  fill_in :password, with: password
+  fill_in :password_confirmation, with: password_confirmation
   click_button "Sign-up"
 end
 
