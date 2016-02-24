@@ -72,4 +72,8 @@ As a user
 So I can show when my space is free
 I want to input a range of dates
 ```
-
+```
+As a user
+So that I can make a booking
+I want to submit a request
+```

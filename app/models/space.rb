@@ -8,6 +8,8 @@ class Space
   property :date_from, Date, required: true
   property :date_to, Date, required: true
 
+  has n, :requests, through: Resource
+
   def format_date(date)
     date.strftime("%d/%m/%y")
   end

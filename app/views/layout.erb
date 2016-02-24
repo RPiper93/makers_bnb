@@ -24,12 +24,16 @@
 </div> 
 </header>
 <% if flash[:errors] && !flash[:errors].empty? %>
-<ul id = 'errors'>
+  <ul id = 'errors'>
     <% flash[:errors].each do |error| %>
-    <li> <%= error %> </li>
+        <li> <%= error %> </li>
     <% end %> 
-    <% end %> 
-</ul> 
+  </ul> 
+<% end %> 
+
+<% if flash[:saved] && !flash[:saved].empty? %>
+    <%= flash[:saved][0] %>
+<% end %>
 <%= yield %>
 </body>
 </html>
