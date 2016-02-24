@@ -4,6 +4,8 @@ class Request
   property :id, Serial
   property :start_date, Date
   property :end_date, Date
-  has n, :users, through: Resource
+  property :status, String
+
+  belongs_to :user
   has n, :spaces, through: Resource
 end

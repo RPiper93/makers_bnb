@@ -9,27 +9,26 @@
     <div class="logo">Make</div>
     Welcome <%=current_user.first_name if current_user%>
     <div id = 'ui'>
-      <form action ='/' method = 'post'> 
+      <form action ='/' method = 'post'>
         <%if current_user%>
-        <input type = 'hidden' name = '_method' value = 'delete' />
-        <input type = 'submit' value = "Sign out" />
-        <% else %> 
-        <button type = 'submit' formaction = '/user/sign_in' formmethod = 'get' > Sign in 
-        </button>
-        <button type = 'submit' formaction = '/' formmethod = 'get' > Sign up 
-        </button>
+          <button type='submit' formaction='/requests' formmethod = 'get'> Requests </button>
+          <input type = 'hidden' name = '_method' value = 'delete' />
+          <input type = 'submit' value = "Sign out" />
+        <% else %>
+          <button type = 'submit' formaction = '/user/sign_in' formmethod = 'get' > Sign in </button>
+          <button type = 'submit' formaction = '/' formmethod = 'get' > Sign up </button>
         <%end%>
-    </form>  
-    
-</div> 
+    </form>
+
+</div>
 </header>
 <% if flash[:errors] && !flash[:errors].empty? %>
   <ul id = 'errors'>
     <% flash[:errors].each do |error| %>
         <li> <%= error %> </li>
-    <% end %> 
-  </ul> 
-<% end %> 
+    <% end %>
+  </ul>
+<% end %>
 
 <% if flash[:saved] && !flash[:saved].empty? %>
     <%= flash[:saved][0] %>
