@@ -1,11 +1,12 @@
 <% @title = "Confirm Request | " %>
 
-<h2>Request for '<%= @request.spaces.map(&:name).join %>'</h2>
+<h2>Request for '<%= @booking_request.spaces.map(&:name).join %>'</h2>
 
 <h4>
-  Date: <%= format_date(@request.start_date) %> - <%= format_date(@request.end_date) %>
+  Date: <%= format_date(@booking_request.start_date) %> - <%= format_date(@booking_request.end_date) %>
 </h4>
 
 <form action="/request/confirm" method="post">
+    <input type='hidden' name='id' value='<%= @booking_request.id %>'>
   <input type='submit' value='Confirm Request'>
 </form>

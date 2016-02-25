@@ -17,14 +17,17 @@ class MakersBnb < Sinatra::Base
   get '/requests' do
     user = current_user
     spaces = user.spaces
-    @requests = spaces.requests
+    @booking_requests = spaces.requests
     erb :requests
   end
 
   get '/requests/confirm/:id' do
-    p current_user
-    @request = Request.get(params[:id])
-    p @request.user_id
+    @booking_request = Request.get(params[:id])
     erb :confirm_requests
+  end
+
+  post '/request/confirm' do
+     Request.first(id: params[:id]).update(status: "Confirmed")
+     redirect('/requests')
   end
 end

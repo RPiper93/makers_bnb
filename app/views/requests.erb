@@ -4,7 +4,7 @@
 
 <h4>Requests I've received</h4>
 
-<% @requests.each do |request| %>
+<% @booking_requests.each do |request| %>
   <ul>
     <li><%= request.spaces.map(&:name).join %>
     <%= request.status %>
