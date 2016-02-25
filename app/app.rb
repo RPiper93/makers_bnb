@@ -18,6 +18,7 @@ class MakersBnb < Sinatra::Base
     def current_user
       User.get(session[:user])
     end
+    
     def reset_date_filter
       session[:date_from] = nil
       session[:date_to] = nil

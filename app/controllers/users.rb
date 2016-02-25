@@ -1,6 +1,7 @@
 class MakersBnb < Sinatra::Base
   delete '/' do 
-    session[:user] = nil
+    #session[:user] = nil
+    session.clear
     redirect ('/')
   end 
 
