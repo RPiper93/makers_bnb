@@ -65,6 +65,7 @@ class MakersBnb < Sinatra::Base
 
   get '/space/:id' do
     @space = Space.get(params[:id])
+    @bookings = @space.bookings.map(&:from_date)
     erb :view_space
   end
 end

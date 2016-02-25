@@ -2,6 +2,9 @@
 <main>
     <h2><%= @space.name %></h2>
     <div>
+        unavailable on <% @bookings.each do |date| %>
+        <%= format_date(date) %>
+        <% end %>
         Available From: <%= format_date(@space.date_from) %> Available To: <%= format_date(@space.date_to) %>
     </div>
 

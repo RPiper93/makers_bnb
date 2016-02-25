@@ -11,6 +11,7 @@ class User
   has n, :requests
   
   has n, :spaces
+  has n, :bookings
 
   attr_reader :password
   attr_accessor :password_confirmation

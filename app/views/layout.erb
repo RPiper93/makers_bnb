@@ -24,6 +24,15 @@
 
         </div>
     </header>
+    <% if flash[:booked] && !flash[:booked].empty? %>
+      <ul id = 'booked'>
+            <% flash[:booked].each do |booked| %>
+                <li> <%= booked %> </li>
+            <% end %>
+        </ul>
+    <% end %>
+
+
     <% if flash[:errors] && !flash[:errors].empty? %>
         <ul id = 'errors'>
             <% flash[:errors].each do |error| %>
