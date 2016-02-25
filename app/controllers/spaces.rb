@@ -2,7 +2,7 @@ class MakersBnb < Sinatra::Base
   get '/spaces' do
     @date_from = session[:date_from]
     @date_to = session[:date_to]
-    
+
     if @date_from && @date_to
       @spaces = Space.all(:date_from.lte => @date_from,
                           :date_to.gte => @date_to)

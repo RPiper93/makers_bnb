@@ -22,12 +22,11 @@ class MakersBnb < Sinatra::Base
     def format_date(date)
       date.strftime("%d/%m/%y")
     end
-    
+
     def reset_date_filter
       session[:date_from] = nil
       session[:date_to] = nil
     end
-
 
     def check_bookings(date, range)
       date.each do |booking|
@@ -37,9 +36,6 @@ class MakersBnb < Sinatra::Base
         end
       end
     end
-
-
-
   end
 
   # start the server if ruby file executed directly

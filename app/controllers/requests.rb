@@ -2,8 +2,8 @@ class MakersBnb < Sinatra::Base
   post '/request/new' do
     space = Space.get(params[:space_id])
     if Date.parse(params[:start_date]) < space.date_from || Date.parse(params[:start_date]) > space.date_to
-    flash.next[:booked] = ['Dates outside of range']
-    redirect('/space/' + params[:space_id])
+      flash.next[:booked] = ['Dates outside of range']
+      redirect('/space/' + params[:space_id])
     end
     booking_from = space.bookings.map(&:from_date)
     booking_to = space.bookings.map(&:end_date)
