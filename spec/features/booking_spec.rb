@@ -36,11 +36,11 @@ feature 'Confirming a booking' do
     click_button 'Sign out'
     sign_in
     click_link("Sam's space")
-    expect(page).to have_content('unavailable on 23/02/16')
+    expect(page).to have_content('Unavailable from 23/02/16')
     fill_in :start_date, with: Date.new(2016,02,23)
     fill_in :end_date, with: Date.new(2016,03,28)
     click_button('Request a booking')
-    expect(page).to have_content('unavailable on these dates')
+    expect(page).to have_content('Unavailable on these dates')
   end
 
 end

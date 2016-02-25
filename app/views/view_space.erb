@@ -2,10 +2,14 @@
 <main>
     <h2><%= @space.name %></h2>
     <div>
-        unavailable on <% @bookings.each do |date| %>
-        <%= format_date(date) %>
-        <% end %>
-        Available From: <%= format_date(@space.date_from) %> Available To: <%= format_date(@space.date_to) %>
+
+    Available From: <%= format_date(@space.date_from) %> Available To: <%= format_date(@space.date_to) %>
+    </br>
+    <% @bookings.each do |booking| %>
+    Unavailable from <%= format_date(booking.from_date) %> - <%= format_date(booking.end_date) %> 
+    </br>
+    <%end%>
+     
     </div>
 
     <form action='/request/new' method='post'>
