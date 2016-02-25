@@ -9,7 +9,7 @@
 
 #####Details
 - Date created: 22/02/16 @ 14:24
-- Date last updated: 22/02/16 @ 19:10
+- Date last updated: 25/02/16 @ 01:40
 
 ###Description
 
@@ -89,5 +89,5 @@ I want to submit a request
 As a user
 So that I can only see spaces available on the dates I am
 I want to be able to filter spaces by date
-```
 :construction:
+```
