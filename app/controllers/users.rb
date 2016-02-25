@@ -12,6 +12,7 @@ class MakersBnb < Sinatra::Base
                        password_confirmation: params[:password_confirmation])
     if user.saved? 
       session[:user] = user.id
+      send_mail
       redirect('/spaces')
     else 
       flash.next[:errors] = user.errors.full_messages

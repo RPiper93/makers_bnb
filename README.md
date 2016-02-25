@@ -9,7 +9,7 @@
 
 #####Details
 - Date created: 22/02/16 @ 14:24
-- Date last updated: 25/02/16 @ 01:40
+- Date last updated: 25/02/16 @ 12:37
 
 ###Description
 
@@ -96,3 +96,10 @@ As a user
 So that I can confirm a booking
 I can approve a request
 ```
+
+```
+As a user
+So that I can be notified that my sign-up has been successful
+I want to receive a notification email
+```
+:construction:
