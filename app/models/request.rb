@@ -7,5 +7,5 @@ class Request
   property :status, String
 
   belongs_to :user
-  has n, :spaces, through: Resource
+  belongs_to :space
 end

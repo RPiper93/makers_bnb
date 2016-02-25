@@ -4,9 +4,9 @@
 
 <h4>Requests I've received</h4>
 
-<% @booking_requests.each do |request| %>
+<% @spaces.requests.each do |request| %>
   <ul>
-    <li><%= request.spaces.map(&:name).join %>
+    <li><%= @spaces.map(&:name).join %>
     <%= request.status %>
     <%= format_date(request.start_date) %> - <%= format_date(request.end_date) %>
     <a href="/requests/confirm/<%= request.id %>">Confirm?</a></li>

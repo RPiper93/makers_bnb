@@ -9,5 +9,5 @@ class Space
   property :date_to, Date, required: true
 
   belongs_to :user
-  has n, :requests, through: Resource
+  has n, :requests
 end
