@@ -36,6 +36,22 @@ class MakersBnb < Sinatra::Base
         end
       end
     end
+
+    def validate_dates(space)
+      if Date.parse(params[:start_date]) < space.date_from || Date.parse(params[:start_date]) > space.date_to
+        flash.next[:booked] = ['Dates outside of range']
+        redirect('/space/' + params[:space_id])
+      end
+    end
+
+    def validate(space)
+      validate_dates(space)
+      booking_from = space.bookings.map(&:from_date)
+      booking_to = space.bookings.map(&:end_date)
+      request_range=(params[:start_date]..params[:end_date])
+      check_bookings(booking_from, request_range)
+      check_bookings(booking_to, request_range)
+    end
   end
 
   # start the server if ruby file executed directly
