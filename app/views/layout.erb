@@ -1,40 +1,40 @@
-<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title><%= @title if @title %>MakersBnB</title>
-</head>
-<body>
-  <header>
-    <div class="logo">Make</div>
-    Welcome <%=current_user.first_name if current_user%>
-    <div id = 'ui'>
-  <form action ='/'>
-    <button type='submit' formaction='/requests' formmethod = 'get'> Requests </button>
-  </form>
-      <form action ='/' method = 'post'>
-        <%if current_user%>
-          <input type = 'hidden' name = '_method' value = 'delete' />
-          <input type = 'submit' value = "Sign out" />
-        <% else %>
-          <button type = 'submit' formaction = '/user/sign_in' formmethod = 'get' > Sign in </button>
-          <button type = 'submit' formaction = '/' formmethod = 'get' > Sign up </button>
-        <%end%>
-    </form>
+    <!DOCTYPE html>
+    <head>
+        <meta charset="UTF-8">
+        <title><%= @title if @title %>MakersBnB</title>
+    </head>
+    <body>
+        <header>
+            <div class="logo">Make</div>
+            Welcome <%=current_user.first_name if current_user%>
+        <div id = 'ui'>
+            <form action ='/'>
+                <button type='submit' formaction='/requests' formmethod = 'get'> Requests </button>
+            </form>
+            <form action ='/' method = 'post'>
+                <%if current_user%>
+                    <input type = 'hidden' name = '_method' value = 'delete' />
+                    <input type = 'submit' value = "Sign out" />
+                <% else %>
+                    <button type = 'submit' formaction = '/user/sign_in' formmethod = 'get' > Sign in </button>
+                    <button type = 'submit' formaction = '/' formmethod = 'get' > Sign up </button>
+                <%end%>
+            </form>
 
-</div>
-</header>
-<% if flash[:errors] && !flash[:errors].empty? %>
-  <ul id = 'errors'>
-    <% flash[:errors].each do |error| %>
-        <li> <%= error %> </li>
+        </div>
+    </header>
+    <% if flash[:errors] && !flash[:errors].empty? %>
+        <ul id = 'errors'>
+            <% flash[:errors].each do |error| %>
+                <li> <%= error %> </li>
+            <% end %>
+        </ul>
     <% end %>
-  </ul>
-<% end %>
 
-<% if flash[:saved] && !flash[:saved].empty? %>
-    <%= flash[:saved][0] %>
-<% end %>
-<%= yield %>
+    <% if flash[:saved] && !flash[:saved].empty? %>
+        <%= flash[:saved][0] %>
+    <% end %>
+    <%= yield %>
 </body>
 </html>

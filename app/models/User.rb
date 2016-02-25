@@ -8,7 +8,7 @@ class User
   property :last_name, String, required: true
   property :email, String, format: :email_address, required: true, unique: true
   property :password_hash, Text, required: true
-  has n, :requests, through: Resource
+  has n, :requests
   
   has n, :spaces
 

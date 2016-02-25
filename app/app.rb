@@ -16,7 +16,6 @@ class MakersBnb < Sinatra::Base
 
   helpers do
     def current_user
-      puts session[:user]
       @user ||= User.get(session[:user])
     end
 
