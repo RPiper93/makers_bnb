@@ -1,6 +1,15 @@
 class MakersBnb < Sinatra::Base
   get '/spaces' do
-    @spaces = Space.all
+    @date_from = session[:date_from]
+    @date_to = session[:date_to]
+    
+    if @date_from && @date_to
+      @spaces = Space.all(:date_from.lte => @date_from,
+                          :date_to.gte => @date_to)
+    else
+      reset_date_filter
+      @spaces = Space.all
+    end
     @user = User.get(session[:user])
     erb :spaces
   end
@@ -20,8 +29,24 @@ class MakersBnb < Sinatra::Base
     else
       Space.create(attributes)
     end
+    session[:space_id] = nil
+    redirect('/spaces')
+  end
+
+  post '/spaces/filter' do
+    if params[:date_from] > params[:date_to]
+      flash.next[:errors] = ['Invalid date range!']
+    else
+      session[:date_from] = params[:date_from]
+      session[:date_to] = params[:date_to]
+    end
 
     redirect('/spaces')
+  end
+
+  delete '/spaces/filter-reset' do
+    reset_date_filter
+    redirect ('/spaces')
   end
 
   get '/spaces/new' do

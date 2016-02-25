@@ -1,12 +1,27 @@
 <h1>
-  <% if @user %> 
+  <% if @user %>
   Welcome <%= @user.first_name %>
-  <% end %> 
+  <% end %>
 </h1>
 
 <% @title="All Spaces | " %>
 
 <% if @spaces %>
+  <form action="/spaces/filter" method="post">
+    <label>
+      Available from
+      <input type="date" name="date_from" value="<%= @date_from %>">
+    </label>
+    <label>
+      Available to
+      <input type="date" name="date_to" value="<%= @date_to %>">
+    </label>
+    <input type="submit" value="Filter Spaces">
+  </form>
+  <form action="/spaces/filter-reset" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="Reset">
+  </form>
   <ul><% @spaces.each do |space| %>
     <li>
       <article>
@@ -16,7 +31,8 @@
         <p><%= space.description %></p>
         <p>Price: £<%= sprintf("%0.02f", space.price) %></p>
         <% if space.user_id == @user.id %>
-          <form action="/spaces/update" method="POST">  <input type="hidden" name="space_id" value="<%= space.id %>"></input>
+          <form action="/spaces/update" method="POST">
+            <input type="hidden" name="space_id" value="<%= space.id %>"></input>
             <input type="submit" value="Update Space">
           </form>
         <% end %>
