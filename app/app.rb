@@ -24,9 +24,9 @@ class MakersBnb < Sinatra::Base
     end
 
     def format_date(date)
-    date.strftime("%d/%m/%y")
+      date.strftime("%d/%m/%y")
     end
-    
+
     def reset_date_filter
       session[:date_from] = nil
       session[:date_to] = nil
@@ -52,9 +52,32 @@ class MakersBnb < Sinatra::Base
       
       flash.next[:errors] = ['Sign-up confirmation email sent']
     end
+
+    def check_bookings(date, range)
+      date.each do |booking|
+        if range.include?(booking.to_s) 
+          flash.next[:booked] = ['Unavailable on these dates'] 
+          redirect('/space/' + params[:space_id])
+        end
+      end
+    end
+
+    def validate_dates(space)
+      if Date.parse(params[:start_date]) < space.date_from || Date.parse(params[:start_date]) > space.date_to
+        flash.next[:booked] = ['Dates outside of range']
+        redirect('/space/' + params[:space_id])
+      end
+    end
+
+    def validate(space)
+      validate_dates(space)
+      booking_from = space.bookings.map(&:from_date)
+      booking_to = space.bookings.map(&:end_date)
+      request_range=(params[:start_date]..params[:end_date])
+      check_bookings(booking_from, request_range)
+      check_bookings(booking_to, request_range)
+    end
   end
-
-
 
   # start the server if ruby file executed directly
   run! if app_file == $0

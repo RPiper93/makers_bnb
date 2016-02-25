@@ -2,7 +2,7 @@ class MakersBnb < Sinatra::Base
   get '/spaces' do
     @date_from = session[:date_from]
     @date_to = session[:date_to]
-    
+
     if @date_from && @date_to
       @spaces = Space.all(:date_from.lte => @date_from,
                           :date_to.gte => @date_to)
@@ -65,6 +65,7 @@ class MakersBnb < Sinatra::Base
 
   get '/space/:id' do
     @space = Space.get(params[:id])
+    @bookings = @space.bookings
     erb :view_space
   end
 end
