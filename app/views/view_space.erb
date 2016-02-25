@@ -2,7 +2,14 @@
 <main>
     <h2><%= @space.name %></h2>
     <div>
+
         Available From: <%= format_date(@space.date_from) %> Available To: <%= format_date(@space.date_to) %>
+    </br>
+    <% @bookings.each do |booking| %>
+        Unavailable from <%= format_date(booking.from_date) %> - <%= format_date(booking.end_date) %> 
+    </br>
+<%end%>
+
     </div>
 
     <form action='/request/new' method='post'>
@@ -15,7 +22,7 @@
             End Date:
             <input type='date' name='end_date' />
         </label>
-        <input type='hidden' name='space_id' value= <%= @space.id %> />
+        <input type='hidden' name='space_id' value= '<%= @space.id %>' />
         <input type='submit' value='Request a booking'>
     </form>
 </main>

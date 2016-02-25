@@ -30,7 +30,7 @@ end
 
 def sign_in
   User.create(first_name: "Sam", last_name: "Morgan",
-  email: "sam@email.com", password: "123abc", password_confirmation: "123abc")
+              email: "sam@email.com", password: "123abc", password_confirmation: "123abc")
   visit '/user/sign_in'
   fill_in :email, with: "sam@email.com"
   fill_in(:password, with: "123abc")
@@ -38,9 +38,9 @@ def sign_in
 end
 
 def make_request
-    create_user(first_name: "Joe",last_name: "Schmo", email: "joe@email.com" )
-    click_link "Sam's space"
-    fill_in :start_date, with: Date.new(2016,02,23)
-    fill_in :end_date, with: Date.new(2016, 02, 24)
-    click_button "Request a booking"
+  create_user(first_name: "Joe",last_name: "Schmo", email: "joe@email.com" )
+  click_link "Sam's space"
+  fill_in :start_date, with: Date.new(2016,02,23)
+  fill_in :end_date, with: Date.new(2016, 02, 24)
+  click_button "Request a booking"
 end
