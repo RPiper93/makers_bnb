@@ -102,4 +102,10 @@ As a user
 So that I can be notified that my sign-up has been successful
 I want to receive a notification email
 ```
-:construction:
+
+```
+As a user
+So that I can entertain multiple offers
+I want to be able to receive multiple booking requests until one is confirmed
+```
+:constructed:
