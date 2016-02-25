@@ -4,7 +4,7 @@ class MakersBnb < Sinatra::Base
     request = Request.create(start_date: params[:start_date],
                              end_date: params[:end_date],
                              status: "Not Confirmed",
-                             user_id: current_user.id,
+                             user_id: current_user.id, 
                              space_id: params[:space_id])
     if request.saved?
       flash.next[:saved] = ['Your booking request has been sent']
