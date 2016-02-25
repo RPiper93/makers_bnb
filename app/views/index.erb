@@ -1,29 +1,33 @@
-<form action='/user/new' method='post'>
-    <label for='first_name'>
-        First Name
-        <input type='text' name='first_name' />
-    </label>
+<main class="container col-4">
+  <div class="signup-form">
+    <h2 class="text-center">Sign up to <span class="logo-style">MakersBnB</span></h2>
+    <form action='/user/new' method='post'>
+        <label for='first_name'>
+            First Name*
+        </label>
+        <input type='text' name='first_name' placeholder = 'name' required/>
 
-    <label for='last_name'>
-        Last Name
-        <input type='text' name='last_name' />
-    </label>
+        <label for='last_name'>
+            Last Name*
+        </label>
+        <input type='text' name='last_name' placeholder = 'last name' required/>
 
-    <label for='email'>
-        Email
-        <input type='email' name='email' />
-    </label>
+        <label for='email'>
+            Email*
+        </label>
+        <input type='email' name='email' placeholder = 'name@domain.com' required/>
 
-    <label for='password'>
-        Password
-        <input type='password' name='password' required />
-    </label> 
+        <label for='password'>
+            Password*
+        </label>
+        <input type='password' name='password' placeholder = 'your password' required />
 
-    <label for='password_confirmation'>
-        Password Confirmation
-        <input type='password' name='password_confirmation' required />
-    </label>
+        <label for='password_confirmation'>
+            Password Confirmation*
+        </label>
+        <input type='password' name='password_confirmation' placeholder = 'confirm your password' required />
 
-    <input type='submit' value='Sign-up' />
-</form>
-
+        <input type='submit' value='Sign-up' class="btn btn-blue"/>
+    </form>
+  </div>
+</main>

@@ -1,6 +1,6 @@
 <% @title= "#{@space.name} | " %>
-<main>
-    <h2><%= @space.name %></h2>
+<main class="container col-6">
+    <h2 class="text-center"><%= @space.name %></h2>
     <div>
         Available From: <%= format_date(@space.date_from) %> Available To: <%= format_date(@space.date_to) %>
     </div>
@@ -16,6 +16,6 @@
             <input type='date' name='end_date' />
         </label>
         <input type='hidden' name='space_id' value= <%= @space.id %> />
-        <input type='submit' value='Request a booking'>
+        <input type='submit' value='Request a booking' class="btn btn-blue">
     </form>
 </main>

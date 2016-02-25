@@ -1,31 +1,32 @@
 <% @title="#{@space ? "Update Space" : "List a Space"} | " %>
+<main class="container col-6">
+  <h2 class="text-center"><%= @space ? "Update Space" : "List a Space" %></h2>
+  <form action="/spaces" method="post">
+    <label for="name">
+      Name:
+      <input type="text" name="name" value="<%= @space.name if @space %>" required>
+    </label>
 
-<h2><%= @space ? "Update Space" : "List a Space" %></h2>
-<form action="/spaces" method="post">
-  <label for="name">
-    Name:
-    <input type="text" name="name" value="<%= @space.name if @space %>" required>
-  </label>
+    <label for="description">
+      Description:
+      <textarea name="description" cols="30" rows="5"><%= @space.description if @space %></textarea>
+    </label>
 
-  <label for="description">
-    Description:
-    <textarea name="description" cols="30" rows="10"><%= @space.description if @space %></textarea>
-  </label>
+    <label for='price'>
+       Price:
+      <input type='number' name='price' step="0.01" value="<%= @space.price if @space %>" required class="width-200"/>
+    </label>
 
-  <label for='price'>
-     Price:
-    <input type='number' name='price' step="0.01" value="<%= @space.price if @space %>" required/>
-  </label>
+    <label for='date_from'>
+        Available From:
+        <input type='date' name='date_from' value="<%= @space.date_from if @space %>" required class="width-200"/>
+    </label>
 
-  <label for='date_from'>
-      Available From:
-      <input type='date' name='date_from' value="<%= @space.date_from if @space %>" required/>
-  </label>
+    <label for="date_to">
+        Available To:
+        <input type='date' name='date_to' value="<%= @space.date_to if @space %>" required class="width-200"/>
+    </label>
 
-  <label for="date_to">
-      Available To:
-      <input type='date' name='date_to' value="<%= @space.date_to if @space %>" required/>
-  </label>
-
-  <input type="submit" value="<%= @space ? "Update Space" : "List a Space" %>">
-</form>
+    <input type="submit" value="<%= @space ? "Update Space" : "List a Space" %>" class="btn btn-blue width-200">
+  </form>
+</main>
