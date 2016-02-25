@@ -1,15 +1,11 @@
 class MakersBnb < Sinatra::Base
   get '/spaces' do
-    if session[:date_from] && session[:date_to]
-      # puts "Filter activated!"
-      # puts "-----------------"
-      # puts "From: #{session[:date_from]}"
-      # puts "To: #{session[:date_to]}"
-      
-      @date_from = session[:date_from]
-      @date_to = session[:date_to]
-      @spaces = Space.all(:date_from.gte => session[:date_from],
-                          :date_to.lte => session[:date_to])
+    @date_from = session[:date_from]
+    @date_to = session[:date_to]
+    
+    if @date_from && @date_to
+      @spaces = Space.all(:date_from.lte => @date_from,
+                          :date_to.gte => @date_to)
     else
       reset_date_filter
       @spaces = Space.all
