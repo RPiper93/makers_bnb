@@ -2,7 +2,7 @@
 <main>
     <h2><%= @space.name %></h2>
     <div>
-        Available From: <%= @space.format_date(@space.date_from) %> Available To: <%= @space.format_date(@space.date_to) %> 
+        Available From: <%= format_date(@space.date_from) %> Available To: <%= format_date(@space.date_to) %>
     </div>
 
     <form action='/request/new' method='post'>
@@ -17,5 +17,5 @@
         </label>
         <input type='hidden' name='space_id' value= <%= @space.id %> />
         <input type='submit' value='Request a booking'>
-    </form>  
+    </form>
 </main>

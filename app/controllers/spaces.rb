@@ -20,7 +20,7 @@ class MakersBnb < Sinatra::Base
     else
       Space.create(attributes)
     end
-    
+
     redirect('/spaces')
   end
 
@@ -36,7 +36,7 @@ class MakersBnb < Sinatra::Base
   post '/spaces/update' do
     session[:space_id] = params[:space_id]
     redirect('/spaces/update')
-  end  
+  end
 
   get '/space/:id' do
     @space = Space.get(params[:id])

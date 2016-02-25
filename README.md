@@ -84,3 +84,9 @@ As a user
 So that I can make a booking
 I want to submit a request
 ```
+
+```
+As a user
+So that I can confirm a booking
+I can approve a request
+```
