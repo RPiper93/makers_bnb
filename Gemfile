@@ -8,6 +8,8 @@ gem 'dm-postgres-adapter'
 gem 'bcrypt'
 gem 'rake'
 gem 'sinatra-flash'
+gem 'pony'
+gem 'dotenv'
 
 group :test do
   gem 'capybara'
