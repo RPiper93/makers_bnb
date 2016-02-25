@@ -29,7 +29,7 @@ class MakersBnb < Sinatra::Base
     end
 
 
-    def check_booking_from_date(date, range)
+    def check_bookings(date, range)
       date.each do |booking|
         if range.include?(booking.to_s) 
           flash.next[:booked] = ['Unavailable on these dates'] 
@@ -38,14 +38,7 @@ class MakersBnb < Sinatra::Base
       end
     end
 
-    def check_booking_to_date(date, range)
-      date.each do  |booking|
-        if range.include?(booking.to_s) 
-          flash.next[:booked] = ['Unavailable on these dates'] 
-          redirect('/space/' + params[:space_id])
-        end
-      end 
-    end
+
 
   end
 

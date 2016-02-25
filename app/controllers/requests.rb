@@ -1,11 +1,15 @@
 class MakersBnb < Sinatra::Base
   post '/request/new' do
     space = Space.get(params[:space_id])
+    if Date.parse(params[:start_date]) < space.date_from || Date.parse(params[:start_date]) > space.date_to
+    flash.next[:booked] = ['Dates outside of range']
+    redirect('/space/' + params[:space_id])
+    end
     booking_from = space.bookings.map(&:from_date)
     booking_to = space.bookings.map(&:end_date)
     request_range=(params[:start_date]..params[:end_date])
-    check_booking_from_date(booking_from, request_range)
-    check_booking_to_date(booking_to, request_range)
+    check_bookings(booking_from, request_range)
+    check_bookings(booking_to, request_range)
     request = Request.create(start_date: params[:start_date],
                              end_date: params[:end_date],
                              status: "Not Confirmed",
