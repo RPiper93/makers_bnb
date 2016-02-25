@@ -9,9 +9,5 @@ class Space
   property :date_to, Date, required: true
 
   belongs_to :user
-  has n, :requests, through: Resource
-
-  def format_date(date)
-    date.strftime("%d/%m/%y")
-  end
+  has n, :requests
 end

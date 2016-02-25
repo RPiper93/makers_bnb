@@ -90,3 +90,9 @@ As a user
 So that I can only see spaces available on the dates I am
 I want to be able to filter spaces by date
 ```
+
+```
+As a user
+So that I can confirm a booking
+I can approve a request
+```

@@ -40,6 +40,7 @@ class MakersBnb < Sinatra::Base
       session[:date_from] = params[:date_from]
       session[:date_to] = params[:date_to]
     end
+
     redirect('/spaces')
   end
 
