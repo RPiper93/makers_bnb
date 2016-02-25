@@ -69,7 +69,14 @@ class MakersBnb < Sinatra::Base
       end
     end
 
+    def validate_space(space)
+      if current_user.id == space.user_id
+        redirect('/spaces')
+      end
+    end
+
     def validate(space)
+      validate_space(space)
       validate_dates(space)
       booking_from = space.bookings.map(&:from_date)
       booking_to = space.bookings.map(&:end_date)

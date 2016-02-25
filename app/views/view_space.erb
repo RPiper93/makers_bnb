@@ -11,7 +11,7 @@
 <%end%>
 
     </div>
-
+  <% if current_user.id != @space.user_id %>
     <form action='/request/new' method='post'>
         <label for='start_date'>
             Start Date:
@@ -25,4 +25,5 @@
         <input type='hidden' name='space_id' value= '<%= @space.id %>' />
         <input type='submit' value='Request a booking'>
     </form>
+  <% end %>
 </main>
