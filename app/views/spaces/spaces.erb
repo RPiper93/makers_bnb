@@ -1,55 +1,55 @@
 <% @title="All Spaces | " %>
 
 <main class="container col-8">
-  <h2 class="text-center">Spaces</h2>
-  <% if current_user %>
-    <div class="block-center list-space-btn">
-      <form action="/spaces/new" method="get">
-        <input type="submit" value="List a Space" class="btn btn-green">
-      </form>
-    </div>
-  <% end %>
-<% if @spaces %>
-  <form action="/spaces/filter" method="post" class="date-filter">
-    <label class="fl">
-      Available from
-      <input type="date" name="date_from" value="<%= @date_from %>" required />
-    </label>
-    <label class="fl">
-      Available to
-      <input type="date" name="date_to" value="<%= @date_to %>" required />
-    </label>
-    <input type="submit" value="Filter Spaces" class="btn" />
-  </form>
-  <form action="/spaces/filter-reset" method="post">
-    <input type="hidden" name="_method" value="delete" />
-    <input type="submit" value="Reset Filter" class="btn btn" />
-  </form>
-  <ul class="list-spaces">
-   <% @spaces.each do |space| %>
-    <li>
-      <a href="space/<%= space.id %>">
-        <article class="clearfix">
-          <header>
-              <h4><%= space.name %></h4>
-          </header>
-          <div class="space-desc">
-            <p><%= space.description %></p>
-          </div>
-          <div class="space-price">
-            <p><b>Price per night:</b> £<%= sprintf("%0.02f", space.price) %></p>
-          </div>
-          <% if current_user %>
-            <% if space.user_id == @user.id %>
-              <form action="/spaces/update/<%= space.id %>">
-                <input type="submit" value="Update Space" class="btn" />
-              </form>
-            <% end %>
-          <% end %>
-        </article>
-      </a>
-    </li>
+    <h2 class="text-center">Spaces</h2>
+    <% if current_user %>
+        <div class="block-center list-space-btn">
+            <form action="/spaces/new" method="get">
+                <input type="submit" value="List a Space" class="btn btn-green">
+            </form>
+        </div>
     <% end %>
-</ul>
-<% end %>
+    <% if @spaces %>
+        <form action="/spaces/filter" method="post" class="date-filter">
+            <label class="fl">
+                Available from
+                <input type="date" name="date_from" value="<%= @date_from %>" required />
+            </label>
+            <label class="fl">
+                Available to
+                <input type="date" name="date_to" value="<%= @date_to %>" required />
+            </label>
+            <input type="submit" value="Filter Spaces" class="btn" />
+        </form>
+        <form action="/spaces/filter-reset" method="post">
+            <input type="hidden" name="_method" value="delete" />
+            <input type="submit" value="Reset Filter" class="btn btn" />
+        </form>
+        <ul class="list-spaces">
+            <% @spaces.each do |space| %>
+                <li>
+                    <a href="space/<%= space.id %>">
+                        <article class="clearfix">
+                            <header>
+                                <h4><%= space.name %></h4>
+                            </header>
+                            <div class="space-desc">
+                                <p><%= space.description %></p>
+                            </div>
+                            <div class="space-price">
+                                <p><b>Price per night:</b> £<%= sprintf("%0.02f", space.price) %></p>
+                            </div>
+                            <% if current_user %>
+                                <% if space.user_id == @user.id %>
+                                    <form action="/spaces/update/<%= space.id %>">
+                                        <input type="submit" value="Update Space" class="btn" />
+                                    </form>
+                                <% end %>
+                            <% end %>
+                        </article>
+                    </a>
+                </li>
+            <% end %>
+        </ul>
+    <% end %>
 </main>
