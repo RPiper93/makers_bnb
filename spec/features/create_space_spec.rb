@@ -17,7 +17,7 @@ feature "Create a space" do
   scenario 'can add a price' do
     create_user
     create_space(price: 30)
-    expect(page).to have_content("Price: £30.00")
+    expect(page).to have_content("Price per night: £30.00")
   end
 
   scenario 'can add date from and to' do

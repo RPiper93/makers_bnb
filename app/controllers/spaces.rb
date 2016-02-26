@@ -11,10 +11,28 @@ class MakersBnb < Sinatra::Base
       @spaces = Space.all
     end
     @user = User.get(session[:user])
-    erb :spaces
+    erb :'spaces/spaces'
   end
 
-  post '/spaces' do
+  post '/spaces/new' do
+    validate_space_availability(params[:date_from], params[:date_to], '/spaces/new')
+
+    attributes = {
+      name: params[:name],
+      description: params[:description],
+      price: params[:price],
+      date_from: params[:date_from],
+      date_to: params[:date_to],
+      user_id: current_user.id
+    }
+    
+    Space.create(attributes)
+    redirect('/spaces')
+  end
+
+  post '/spaces/update/:id' do
+    validate_space_availability(params[:date_from], params[:date_to], '/spaces/update/' + params[:id])
+
     attributes = {
       name: params[:name],
       description: params[:description],
@@ -24,23 +42,14 @@ class MakersBnb < Sinatra::Base
       user_id: current_user.id
     }
 
-    if session[:space_id]
-      Space.first(id: session[:space_id]).update(attributes)
-    else
-      Space.create(attributes)
-    end
-    session[:space_id] = nil
+    Space.first(id: params[:id]).update(attributes)
     redirect('/spaces')
   end
 
   post '/spaces/filter' do
-    if params[:date_from] > params[:date_to]
-      flash.next[:errors] = ['Invalid date range!']
-    else
-      session[:date_from] = params[:date_from]
-      session[:date_to] = params[:date_to]
-    end
-
+    validate_space_availability(params[:date_from], params[:date_to], '/spaces')
+    session[:date_from] = params[:date_from]
+    session[:date_to] = params[:date_to]
     redirect('/spaces')
   end
 
@@ -50,22 +59,21 @@ class MakersBnb < Sinatra::Base
   end
 
   get '/spaces/new' do
-    erb :spaces_new
+    if !current_user
+      flash.next[:errors] = ['Please log in or sign up to create new space']
+      redirect('/spaces')
+    end
+    erb :'spaces/spaces_new'
   end
 
-  get '/spaces/update' do
-    @space = Space.get(session[:space_id])
-    erb :spaces_new
-  end
-
-  post '/spaces/update' do
-    session[:space_id] = params[:space_id]
-    redirect('/spaces/update')
+  get '/spaces/update/:id' do
+    @space = Space.get(params[:id])
+    erb :'spaces/spaces_new'
   end
 
   get '/space/:id' do
     @space = Space.get(params[:id])
     @bookings = @space.bookings
-    erb :view_space
+    erb :'spaces/view_space'
   end
 end

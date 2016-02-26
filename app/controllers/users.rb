@@ -21,7 +21,7 @@ class MakersBnb < Sinatra::Base
   end
 
   get '/user/sign_in' do 
-    erb :sign_in
+    erb :'users/sign_in'
   end
 
   post '/user/sign_in' do 

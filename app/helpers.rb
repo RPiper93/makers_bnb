@@ -64,4 +64,11 @@ module Helpers
     request_range = (params[:start_date]..params[:end_date])
     reject_booking_conflicts(booked_dates, request_range)
   end
+
+  def validate_space_availability(date_from, date_to, route)
+    if date_from > date_to
+      flash.next[:errors] = ['Invalid date range!']
+      redirect(route)
+    end
+  end
 end

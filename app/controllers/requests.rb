@@ -16,13 +16,13 @@ class MakersBnb < Sinatra::Base
   get '/requests' do
     user = current_user
     @spaces = user.spaces
-    erb :requests
+    erb :'requests/requests'
   end
 
   get '/requests/confirm/:id' do
     @booking_request = Request.get(params[:id])
     @space = Space.get(@booking_request.space_id)
-    erb :confirm_requests
+    erb :'requests/confirm_requests'
   end
 
   post '/request/confirm' do

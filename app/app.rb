@@ -4,6 +4,7 @@ require 'rubygems'
 require './app/database_mapper_helper.rb'
 require 'sinatra/base'
 require 'sinatra/flash'
+require 'sinatra/partial'
 require 'dotenv'
 Dotenv.load
 require 'pony'
@@ -16,7 +17,7 @@ require_relative 'controllers/requests.rb'
 
 class MakersBnb < Sinatra::Base
   include Helpers
-  
+
   get '/' do
     erb :index
   end
