@@ -6,9 +6,13 @@
 
 <% @spaces.requests.each do |request| %>
     <ul>
-        <li><%= @spaces.map(&:name).join %>
-        <%= request.status %>
-        <%= format_date(request.start_date) %> - <%= format_date(request.end_date) %>
-        <a href="/requests/confirm/<%= request.id %>">Confirm?</a></li>
+        <li>
+          <%= @spaces.map(&:name).join %>
+          <%= request.status %>
+          <%= format_date(request.start_date) %> - <%= format_date(request.end_date) %>
+          <% if request.status == 'Not Confirmed' %>
+            <a href="/requests/confirm/<%= request.id %>">Confirm?</a>
+          <% end %>
+        </li>
     </ul>
 <% end %>

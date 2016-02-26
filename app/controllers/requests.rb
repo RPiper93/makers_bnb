@@ -27,7 +27,19 @@ class MakersBnb < Sinatra::Base
 
   post '/request/confirm' do
     Request.first(id: params[:id]).update(status: "Confirmed") 
-    request = Request.get(params[:id])   
+    
+    request = Request.get(params[:id])
+    space = Space.get(request.space_id)
+    range = (request.start_date..request.end_date)
+
+    Request.all.each do |request|
+      if request.space_id == space.id && request.status == 'Not Confirmed'
+        if range.include?(request.start_date) || range.include?(request.end_date)
+          request.update(status: 'Denied')
+        end
+      end
+    end
+  
     Booking.create(from_date: request.start_date, 
                    end_date: request.end_date, 
                    user_id:request.user_id, 

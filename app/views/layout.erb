@@ -9,9 +9,11 @@
             <div class="logo">Make</div>
             Welcome <%=current_user.first_name if current_user%>
         <div id = 'ui'>
-            <form action ='/'>
-                <button type='submit' formaction='/requests' formmethod = 'get'>Requests</button>
-            </form>
+            <% if current_user %>
+                <form action ='/'>
+                    <button type='submit' formaction='/requests' formmethod = 'get'>Requests</button>
+                </form>
+            <% end %>
             <form action ='/' method = 'post'>
                 <%if current_user%>
                     <input type='hidden' name='_method' value='delete' />
