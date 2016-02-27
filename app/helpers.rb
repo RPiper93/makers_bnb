@@ -20,16 +20,16 @@ module Helpers
       body: 'Thanks for signing up to MakersBnb!',
       via: :smtp,
       via_options: {
-            address:              'smtp.gmail.com',
-            port:                 '587',
-            enable_starttls_auto: true,
-            user_name:            ENV['user_name'],
-            password:             ENV['password'],
-            authentication:       :plain,
-            domain:               "localhost.localdomain"
-          }
+        address:              'smtp.gmail.com',
+        port:                 '587',
+        enable_starttls_auto: true,
+        user_name:            ENV['user_name'],
+        password:             ENV['password'],
+        authentication:       :plain,
+        domain:               "localhost.localdomain"
+      }
     })
-    
+
     flash.next[:errors] = ['Sign-up confirmation email sent']
   end
 
