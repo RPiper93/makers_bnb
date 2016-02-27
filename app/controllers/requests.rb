@@ -14,8 +14,12 @@ class MakersBnb < Sinatra::Base
   end
 
   get '/requests' do
-    user = current_user
-    @spaces = user.spaces
+    @spaces = Space.all(user_id: current_user.id) 
+    @requests = @spaces.requests
+    @space_names =  []
+    @requests.each do |r|
+      @space_names << Space.get(r.space_id).name
+    end
     erb :'requests/requests'
   end
 
@@ -27,7 +31,7 @@ class MakersBnb < Sinatra::Base
 
   post '/request/confirm' do
     Request.first(id: params[:id]).update(status: "Confirmed") 
-    
+
     request = Request.get(params[:id])
     space = Space.get(request.space_id)
     range = (request.start_date..request.end_date)
@@ -39,7 +43,7 @@ class MakersBnb < Sinatra::Base
         end
       end
     end
-  
+
     Booking.create(from_date: request.start_date, 
                    end_date: request.end_date, 
                    user_id:request.user_id, 

@@ -19,7 +19,10 @@
                 Available to
                 <input type="date" name="date_to" value="<%= @date_to %>" required />
             </label>
-            <input type="submit" value="Filter Spaces" class="btn" />
+            <label class='fl'>
+                &nbsp; 
+                <input type="submit" value="Filter Spaces" class="btn" />
+            </label>
         </form>
         <form action="/spaces/filter-reset" method="post">
             <input type="hidden" name="_method" value="delete" />
@@ -28,26 +31,32 @@
         <ul class="list-spaces">
             <% @spaces.each do |space| %>
                 <li>
-                    <a href="space/<%= space.id %>">
-                        <article class="clearfix">
+                    <article class="clearfix">
+                        <div class='fl'>
                             <header>
-                                <h4><%= space.name %></h4>
+                                <a href="space/<%= space.id %>">
+                                    <h4><%= space.name %></h4>
+                                </a>
                             </header>
                             <div class="space-desc">
                                 <p><%= space.description %></p>
                             </div>
                             <div class="space-price">
                                 <p><b>Price per night:</b> £<%= sprintf("%0.02f", space.price) %></p>
-                            </div>
-                            <% if current_user %>
-                                <% if space.user_id == @user.id %>
-                                    <form action="/spaces/update/<%= space.id %>">
-                                        <input type="submit" value="Update Space" class="btn" />
-                                    </form>
+                                <% if current_user %>
+                                    <% if space.user_id == @user.id %>
+                                        <form action="/spaces/update/<%= space.id %>">
+                                            <input type="submit" value="Update Space" class="btn" />
+                                        </form>
+                                    <% end %>
                                 <% end %>
-                            <% end %>
-                        </article>
-                    </a>
+
+                            </div>
+                        </div>
+                        <div class='image-container fr'>
+                            <img src='<%= space.image_url %>' class='space-image' alt='house image' />
+                        </div> 
+                    </article>
                 </li>
             <% end %>
         </ul>

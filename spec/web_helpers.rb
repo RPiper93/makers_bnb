@@ -11,6 +11,7 @@ def create_space(name: "Sam's space",
   fill_in(:price, with: price)
   fill_in(:date_from, with: date_from)
   fill_in(:date_to, with: date_to)
+  attach_file('image', File.join(File.dirname(__FILE__), '..', './house.jpeg'))
   click_button('List a Space')
 end
 

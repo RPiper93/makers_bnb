@@ -4,10 +4,10 @@
 
   <h4>Requests I've received</h4>
 
-  <% @spaces.requests.each do |request| %>
+  <% @requests.each do |request| %>
     <ul>
         <li>
-          <%= @spaces.map(&:name).join %>
+          <%= @space_names.shift %>
           <%= request.status %>
           <%= format_date(request.start_date) %> - <%= format_date(request.end_date) %>
           <% if request.status == 'Not Confirmed' %>

@@ -28,4 +28,10 @@ feature "Create a space" do
     expect(page).to have_content("Available From: 23/02/16 Available To: 24/02/16")
   end
 
+  scenario 'can upload image' do
+    create_user
+    create_space
+    Capybara.default_selector = :css
+    expect(page).to have_selector("img.space-image")
+  end
 end

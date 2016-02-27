@@ -1,12 +1,15 @@
 ENV['RACK_ENV'] ||= 'development'
-
 require 'rubygems'
+require 'dotenv'
+Dotenv.load
+ENV['CLOUDINARY_URL']= ENV['cloudinary_url']
 require './app/database_mapper_helper.rb'
 require 'sinatra/base'
 require 'sinatra/flash'
 require 'sinatra/partial'
-require 'dotenv'
-Dotenv.load
+require 'cloudinary'
+require 'cloudinary/uploader'
+require 'cloudinary/utils'
 require 'pony'
 require_relative 'helpers.rb'
 require_relative 'database_mapper_helper'

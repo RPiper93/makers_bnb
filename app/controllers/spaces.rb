@@ -16,16 +16,17 @@ class MakersBnb < Sinatra::Base
 
   post '/spaces/new' do
     validate_space_availability(params[:date_from], params[:date_to], '/spaces/new')
-
     attributes = {
       name: params[:name],
       description: params[:description],
       price: params[:price],
       date_from: params[:date_from],
       date_to: params[:date_to],
-      user_id: current_user.id
+      user_id: current_user.id,
+      image_url: Cloudinary::Uploader.upload(params['image'][:tempfile],
+                                             crop: :limit, width: 750, height: 500).fetch('url')
     }
-    
+
     Space.create(attributes)
     redirect('/spaces')
   end
