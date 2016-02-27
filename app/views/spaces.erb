@@ -1,47 +1,52 @@
-<h1>
-  <% if @user %>
-  Welcome <%= @user.first_name %>
-  <% end %>
-</h1>
-
 <% @title="All Spaces | " %>
 
+<main class="container col-8">
+  <h2 class="text-center">Book a Space</h2>
+  <div class="block-center list-space-btn">
+    <form action="/spaces/new" method="get">
+      <input type="submit" value="List a Space" class="btn btn-green">
+    </form>
+  </div>
 <% if @spaces %>
-  <form action="/spaces/filter" method="post">
-    <label>
+  <form action="/spaces/filter" method="post" class="date-filter">
+    <label class="fl">
       Available from
       <input type="date" name="date_from" value="<%= @date_from %>">
     </label>
-    <label>
+    <label class="fl">
       Available to
       <input type="date" name="date_to" value="<%= @date_to %>">
     </label>
-    <input type="submit" value="Filter Spaces">
+    <input type="submit" value="Filter Spaces" class="btn">
   </form>
   <form action="/spaces/filter-reset" method="post">
     <input type="hidden" name="_method" value="delete">
-    <input type="submit" value="Reset">
+    <input type="submit" value="Reset" class="btn btn">
   </form>
-  <ul><% @spaces.each do |space| %>
+  <ul class="list-spaces">
+   <% @spaces.each do |space| %>
     <li>
-      <article>
-        <header>
-            <h4><a href="space/<%= space.id %>"><%= space.name %></a></h4>
-        </header>
-        <p><%= space.description %></p>
-        <p>Price: £<%= sprintf("%0.02f", space.price) %></p>
-        <% if space.user_id == @user.id %>
-          <form action="/spaces/update" method="POST">
-            <input type="hidden" name="space_id" value="<%= space.id %>"></input>
-            <input type="submit" value="Update Space">
-          </form>
-        <% end %>
-      </article>
+      <a href="space/<%= space.id %>">
+        <article class="clearfix">
+          <header>
+              <h4><%= space.name %></h4>
+          </header>
+          <div class="space-desc">
+            <p><%= space.description %></p>
+          </div>
+          <div class="space-price">
+            <p><b>Price per night:</b> £<%= sprintf("%0.02f", space.price) %></p>
+          </div>
+          <% if space.user_id == @user.id %>
+            <form action="/spaces/update" method="POST">
+              <input type="hidden" name="space_id" value="<%= space.id %>"></input>
+              <input type="submit" value="Update Space" class="btn">
+            </form>
+          <% end %>
+        </article>
+      </a>
     </li>
     <% end %>
   </ul>
 <% end %>
-
-<form action="/spaces/new" method="get">
-  <input type="submit" value="List a Space">
-</form>
+</main>
