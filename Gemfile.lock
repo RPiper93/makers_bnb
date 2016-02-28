@@ -8,6 +8,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.4.0)
+    aws_cf_signer (0.1.3)
     bcrypt (3.1.10)
     bcrypt-ruby (3.1.5)
       bcrypt (>= 3.1.3)
@@ -18,6 +19,9 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    cloudinary (1.1.2)
+      aws_cf_signer
+      rest-client
     data_mapper (1.2.0)
       dm-aggregates (~> 1.2.0)
       dm-constraints (~> 1.2.0)
@@ -94,6 +98,8 @@ GEM
     rack-test (0.6.3)
       rack (>= 1.0)
     rake (10.5.0)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     rspec (3.4.0)
       rspec-core (~> 3.4.0)
       rspec-expectations (~> 3.4.0)
@@ -113,6 +119,8 @@ GEM
       tilt (>= 1.3, < 3)
     sinatra-flash (0.3.0)
       sinatra (>= 1.0.0)
+    sinatra-partial (0.4.0)
+      sinatra
     stringex (1.5.1)
     thread_safe (0.3.5)
     tilt (2.0.2)
@@ -130,6 +138,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt
   capybara
+  cloudinary
   data_mapper
   database_cleaner
   dm-postgres-adapter
@@ -139,9 +148,7 @@ DEPENDENCIES
   rspec
   sinatra
   sinatra-flash
-
-RUBY VERSION
-   ruby 2.2.3p173
+  sinatra-partial
 
 BUNDLED WITH
    1.12.0.pre.1

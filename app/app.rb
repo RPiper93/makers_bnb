@@ -1,11 +1,15 @@
 ENV['RACK_ENV'] ||= 'development'
-
 require 'rubygems'
+require 'dotenv'
+Dotenv.load
+ENV['CLOUDINARY_URL']= ENV['cloudinary_url']
 require './app/database_mapper_helper.rb'
 require 'sinatra/base'
 require 'sinatra/flash'
-require 'dotenv'
-Dotenv.load
+require 'sinatra/partial'
+require 'cloudinary'
+require 'cloudinary/uploader'
+require 'cloudinary/utils'
 require 'pony'
 require_relative 'helpers.rb'
 require_relative 'database_mapper_helper'
@@ -16,8 +20,11 @@ require_relative 'controllers/requests.rb'
 
 class MakersBnb < Sinatra::Base
   include Helpers
-  
+
   get '/' do
+    if current_user
+      redirect '/spaces'
+    end
     erb :index
   end
 

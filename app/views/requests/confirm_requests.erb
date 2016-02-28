@@ -1,0 +1,12 @@
+<% @title = "Confirm Request | " %>
+<main class="container col-8">
+    <h2 class="text-center">Request for <%= @space.name %></h2>
+    <h4>
+        Date: <%= format_date(@booking_request.date_from) %> - <%= format_date(@booking_request.date_to) %>
+    </h4>
+
+    <form action="/request/confirm" method="POST">
+        <input type='hidden' name='id' value='<%= @booking_request.id %>'>
+        <input type='submit' value='Confirm Request' class="btn btn-green width-200">
+    </form>
+</main>

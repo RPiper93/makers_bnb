@@ -1,0 +1,17 @@
+<% if flash[:errors] && !flash[:errors].empty? %>
+    <ul id = 'errors'>
+        <% flash[:errors].each do |error| %>
+            <li> <%= error %> </li>
+        <% end %>
+    </ul>
+<% end %>    
+<% if flash[:booked] && !flash[:booked].empty? %>
+    <ul id = 'booked'>
+        <% flash[:booked].each do |booked| %>
+            <li> <%= booked %> </li>
+        <% end %>
+    </ul>
+<% end %>
+<% if flash[:saved] && !flash[:saved].empty? %>
+    <%= flash[:saved][0] %>
+<% end %>

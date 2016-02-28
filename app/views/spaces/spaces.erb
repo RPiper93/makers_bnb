@@ -1,0 +1,65 @@
+<% @title="All Spaces | " %>
+
+<main class="container col-8">
+    <h2 class="text-center">Spaces</h2>
+    <% if current_user %>
+        <div class="block-center list-space-btn">
+            <form action="/spaces/new" method="GET">
+                <input type="submit" value="List a Space" class="btn btn-green">
+            </form>
+        </div>
+    <% end %>
+    <% if @spaces %>
+        <form action="/spaces/filter" method="POST" class="date-filter">
+            <label class="fl">
+                Available From:
+                <input type="date" id="date_from" name="date_from" value="<%= @date_from %>" min="<%= @today %>" required />
+            </label>
+            <label class="fl">
+                Available To:
+                <input type="date" id="date_to" name="date_to" value="<%= @date_to %>" min="<%= @tomorrow %>" required />
+            </label>
+            <label class='fl'>
+                &nbsp; 
+                <input type="submit" value="Filter Spaces" class="btn" />
+            </label>
+        </form>
+        <form action="/spaces/filter-reset" method="POST">
+            <input type="hidden" name="_method" value="delete" />
+            <input type="submit" value="Reset Filter" class="btn" />
+        </form>
+        <ul class="list-spaces">
+            <% @spaces.each do |space| %>
+                <li>
+                    <article class="clearfix">
+                        <div class='fl'>
+                            <header>
+                                <a href="space/<%= space.id %>">
+                                    <h4><%= space.name %></h4>
+                                </a>
+                            </header>
+                            <div class="space-desc">
+                                <p><%= space.description %></p>
+                            </div>
+                            <div class="space-price">
+                                <p><strong>Price per night:</strong> <%= format_price(space.price) %></p>
+                                <% if current_user %>
+                                    <% if space.user_id == @user.id %>
+                                        <form action="/spaces/update/<%= space.id %>">
+                                            <input type="submit" value="Update Space" class="btn" />
+                                        </form>
+                                    <% end %>
+                                <% end %>
+                            </div>
+                        </div>
+                        <% if space.image_url %>
+                            <div class='image-container fr'>
+                                <img src='<%= space.image_url %>' class='space-image' alt='MakersBnb Space image' />
+                            </div> 
+                            <% end %>
+                        </article>
+                    </li>
+                <% end %>
+            </ul>
+        <% end %>
+    </main>
