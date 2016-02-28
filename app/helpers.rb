@@ -26,6 +26,10 @@ module Helpers
       subject = "#{current_user.first_name}, your space has been listed on MakersBnB!"
       body = "Congratulations! Your space, #{space_name}, has been listed on MakersBnb."
       confirmation_string = "Space listing confirmation email sent!"
+    when :update_space
+      subject = "#{current_user.first_name}, your space has been updated on MakersBnB!"
+      body = "Congratulations! Your space, #{space_name}, has been updated on MakersBnb."
+      confirmation_string = "Space updated confirmation email sent!"
     end
 
     send_mail(recipient, subject, body, confirmation_string)

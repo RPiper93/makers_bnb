@@ -144,4 +144,3 @@ As a user
 So that I can be notified that my space has been successfully updated
 I want to receive a notification email
 ```
-:construction:

@@ -49,6 +49,7 @@ class MakersBnb < Sinatra::Base
     }
 
     Space.first(id: params[:id]).update(attributes)
+    prepare_mail(:update_space, current_user.email, params[:name])
     redirect('/spaces')
   end
 

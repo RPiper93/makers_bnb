@@ -14,6 +14,6 @@ feature 'Email notification' do
     create_user
     create_space
     update_space
-    expect(page).to have_content('Space update confirmation email sent!')
+    expect(page).to have_content('Space updated confirmation email sent!')
   end
 end
