@@ -42,7 +42,7 @@
                                 <p><%= space.description %></p>
                             </div>
                             <div class="space-price">
-                                <p><strong>Price per night:</strong> £<%= format_price(space.price) %></p>
+                                <p><strong>Price per night:</strong> <%= format_price(space.price) %></p>
                                 <% if current_user %>
                                     <% if space.user_id == @user.id %>
                                         <form action="/spaces/update/<%= space.id %>">

@@ -24,16 +24,16 @@ module Helpers
       body: 'Thanks for signing up to MakersBnb!',
       via: :smtp,
       via_options: {
-            address:              'smtp.gmail.com',
-            port:                 '587',
-            enable_starttls_auto: true,
-            user_name:            ENV['user_name'],
-            password:             ENV['password'],
-            authentication:       :plain,
-            domain:               "localhost.localdomain"
-          }
+        address:              'smtp.gmail.com',
+        port:                 '587',
+        enable_starttls_auto: true,
+        user_name:            ENV['user_name'],
+        password:             ENV['password'],
+        authentication:       :plain,
+        domain:               "localhost.localdomain"
+      }
     })
-    
+
     flash.next[:errors] = ['Sign-up confirmation email sent']
   end
 
@@ -47,7 +47,7 @@ module Helpers
   end
 
   def reject_unavailable_dates(space)
-    if Date.parse(params[:start_date]) < space.date_from || Date.parse(params[:start_date]) > space.date_to
+    if Date.parse(params[:date_from]) < space.date_from || Date.parse(params[:date_from]) > space.date_to
       flash.next[:booked] = ['Dates outside of range']
       redirect('/space/' + params[:space_id])
     end
@@ -63,9 +63,9 @@ module Helpers
     validate_space(space)
     reject_unavailable_dates(space)
     booking_from = space.bookings.map(&:from_date)
-    booking_to = space.bookings.map(&:end_date)
+    booking_to = space.bookings.map(&:date_to)
     booked_dates = booking_from.concat(booking_to)
-    request_range = (params[:start_date]..params[:end_date])
+    request_range = (params[:date_from]..params[:date_to])
     reject_booking_conflicts(booked_dates, request_range)
   end
 
