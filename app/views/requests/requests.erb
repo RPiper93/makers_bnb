@@ -1,19 +1,18 @@
 <% @title = "Requests | " %>
 <main class="container col-8">
-  <h2 class="text-center">Requests</h2>
+    <h2 class="text-center">Requests</h2>
 
-  <h4>Requests I've received</h4>
-
-  <% @requests.each do |request| %>
-    <ul>
-        <li>
-          <%= @space_names.shift %>
-          <%= request.status %>
-          <%= format_date(request.start_date) %> - <%= format_date(request.end_date) %>
-          <% if request.status == 'Not Confirmed' %>
-            <a href="/requests/confirm/<%= request.id %>">Confirm?</a>
-          <% end %>
-        </li>
-    </ul>
-  <% end %>
+    <h4>Requests I've received</h4>
+        <% @requests.each do |request| %>
+        <ul>
+            <li>
+                <%= @space_names.shift %>
+                <%= request.status %>
+                <%= format_date(request.date_from) %> - <%= format_date(request.date_to) %>
+                <% if request.status == 'Not Confirmed' %>
+                <a href="/requests/confirm/<%= request.id %>">Confirm?</a>
+                <% end %>
+            </li>
+        </ul>
+    <% end %>
 </main>

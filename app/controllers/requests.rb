@@ -2,8 +2,8 @@ class MakersBnb < Sinatra::Base
   post '/request/new' do
     space = Space.get(params[:space_id])
     validate(space) 
-    request = Request.create(start_date: params[:start_date],
-                             end_date: params[:end_date],
+    request = Request.create(date_from: params[:date_from],
+                             date_to: params[:date_to],
                              status: "Not Confirmed",
                              user_id: current_user.id, 
                              space_id: params[:space_id])
@@ -17,8 +17,8 @@ class MakersBnb < Sinatra::Base
     @spaces = Space.all(user_id: current_user.id) 
     @requests = @spaces.requests
     @space_names =  []
-    @requests.each do |r|
-      @space_names << Space.get(r.space_id).name
+    @requests.each do |request|
+      @space_names << Space.get(request.space_id).name
     end
     erb :'requests/requests'
   end
@@ -34,18 +34,18 @@ class MakersBnb < Sinatra::Base
 
     request = Request.get(params[:id])
     space = Space.get(request.space_id)
-    range = (request.start_date..request.end_date)
+    range = (request.date_from..request.date_to)
 
     Request.all.each do |request|
       if request.space_id == space.id && request.status == 'Not Confirmed'
-        if range.include?(request.start_date) || range.include?(request.end_date)
+        if range.include?(request.date_from) || range.include?(request.date_to)
           request.update(status: 'Denied')
         end
       end
     end
 
-    Booking.create(from_date: request.start_date, 
-                   end_date: request.end_date, 
+    Booking.create(date_from: request.date_from, 
+                   date_to: request.date_to, 
                    user_id:request.user_id, 
                    space_id: request.space_id)
     redirect('/requests')

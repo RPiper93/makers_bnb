@@ -5,7 +5,9 @@ feature 'user sign in' do
     visit '/user/sign_in'
     fill_in :email, with: "sam@email.com"
     fill_in(:password, with: "Abc123")
-    click_button "Submit"
+    within('div.account-form') do
+      click_button "Sign in"
+    end
     expect(current_path).to eq '/spaces'
     expect(page).to have_content "Welcome Sam"
   end

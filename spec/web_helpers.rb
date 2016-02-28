@@ -26,7 +26,9 @@ def create_user(first_name: "Sam",
   fill_in :email, with: email
   fill_in :password, with: password
   fill_in :password_confirmation, with: password_confirmation
-  click_button "Sign-up"
+  within("div.account-form") do
+    click_button "Sign up"
+  end
 end
 
 def sign_in
@@ -35,7 +37,9 @@ def sign_in
   visit '/user/sign_in'
   fill_in :email, with: "sam@email.com"
   fill_in(:password, with: "123abc")
-  click_button "Submit"
+  within("div.account-form") do
+    click_button "Sign in"
+  end
 end
 
 def make_request

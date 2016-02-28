@@ -2,6 +2,8 @@ class MakersBnb < Sinatra::Base
   get '/spaces' do
     @date_from = session[:date_from]
     @date_to = session[:date_to]
+    @today = (Date.today).to_s
+    @tomorrow = (Date.today + 1).to_s
 
     if @date_from && @date_to
       @spaces = Space.all(:date_from.lte => @date_from,
@@ -16,6 +18,7 @@ class MakersBnb < Sinatra::Base
 
   post '/spaces/new' do
     validate_space_availability(params[:date_from], params[:date_to], '/spaces/new')
+    puts "Image param: #{params[:image]}"
     attributes = {
       name: params[:name],
       description: params[:description],
@@ -23,8 +26,8 @@ class MakersBnb < Sinatra::Base
       date_from: params[:date_from],
       date_to: params[:date_to],
       user_id: current_user.id,
-      image_url: Cloudinary::Uploader.upload(params['image'][:tempfile],
-                                             crop: :limit, width: 750, height: 500).fetch('url')
+      image_url: (Cloudinary::Uploader.upload(params['image'][:tempfile],
+                                             crop: :limit, width: 750, height: 500).fetch('url') if params['image'])
     }
 
     Space.create(attributes)
@@ -33,6 +36,8 @@ class MakersBnb < Sinatra::Base
 
   post '/spaces/update/:id' do
     validate_space_availability(params[:date_from], params[:date_to], '/spaces/update/' + params[:id])
+    puts ":image param: #{params[:image]}"
+    puts "'image' param: #{params['image']}"
 
     attributes = {
       name: params[:name],
@@ -40,7 +45,9 @@ class MakersBnb < Sinatra::Base
       price: params[:price],
       date_from: params[:date_from],
       date_to: params[:date_to],
-      user_id: current_user.id
+      user_id: current_user.id,
+      image_url: (Cloudinary::Uploader.upload(params['image'][:tempfile],
+                                             crop: :limit, width: 750, height: 500).fetch('url') if params['image'])
     }
 
     Space.first(id: params[:id]).update(attributes)
@@ -64,17 +71,23 @@ class MakersBnb < Sinatra::Base
       flash.next[:errors] = ['Please log in or sign up to create new space']
       redirect('/spaces')
     end
+    @today = (Date.today).to_s
+    @tomorrow = (Date.today + 1).to_s
     erb :'spaces/spaces_new'
   end
 
   get '/spaces/update/:id' do
     @space = Space.get(params[:id])
+    @today = (Date.today).to_s
+    @tomorrow = (Date.today + 1).to_s
     erb :'spaces/spaces_new'
   end
 
   get '/space/:id' do
     @space = Space.get(params[:id])
     @bookings = @space.bookings
+    @today = (Date.today).to_s
+    @tomorrow = (Date.today + 1).to_s
     erb :'spaces/view_space'
   end
 end

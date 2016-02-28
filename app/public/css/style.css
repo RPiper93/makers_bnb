@@ -122,7 +122,7 @@ main{
     color: red;
 }
 
-.signup-form {
+.account-form {
     min-width: 240px;
 }
 
@@ -204,4 +204,116 @@ textarea {
 }
 input[type='file'] {
     padding: 10px;
+}
+
+label.required:after {
+    color: #e36;
+    content: " *";
+    display: inline;
+}
+
+.hidden,
+input#image {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+label.image-upload-btn {
+    font-size: 14px;
+    color: #ffffff;
+    background-color: #4eb96e;
+    border: 1px solid #4eb96e;
+    border-radius: 2px;
+    margin-top: 12px;
+    padding: 8px 15px;
+    line-height: 22px;
+    text-align: center;
+    cursor: pointer;
+    display: inline-block;   
+}
+
+label.image-upload-btn:focus,
+label.image-upload-btn:hover {
+    color: #4eb96e;
+    background-color: #ffffff;
+    border: 1px solid #e5e5e5;
+}
+
+button.image-trash-btn {
+    position: relative;
+    top: -2px;
+    font-size: 14px;
+    color: #34495d;
+    background-color: rgba(0,0,0,0);
+    border: 1px solid rgba(0,0,0,0);
+    border-radius: 2px;
+    margin-top: 12px;
+    padding: 10.25px 10px;
+    line-height: 22px;
+    text-align: center;
+    cursor: pointer;
+    display: inline-block;
+}
+
+button.image-trash-btn:focus,
+button.image-trash-btn:hover {
+    color: #fff;
+    background-color: #DB302E;
+    border: 1px solid #DB302E;
+}
+
+label.image-upload-btn svg {
+    width: 1.25em;
+    height: 1.25em;
+    vertical-align: middle;
+    fill: currentColor;
+    margin-top: -0.25em;
+    margin-right: 0.25em;
+}
+
+button.image-trash-btn svg {
+    width: 1.25em;
+    height: 1.25em;
+    vertical-align: middle;
+    fill: currentColor;
+    margin: 0;
+}
+
+/* Password Visibility Toggle */
+#password + .unmask {
+  position: relative;
+  top: -36px;
+  right: 10px;
+  float: right;
+  cursor:pointer;
+  border: none;
+  background-color: rgba(0,0,0,0);
+  -webkit-appearance:none;
+}
+
+.icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    fill: currentColor;
+}
+
+.unmask .icon {
+    width: 1.75em;
+    height: 1.75em;
+    color: #b0b0b0;
+}
+
+#headline-image {
+    width:100%;
+    margin-bottom: 10px;
+}
+
+h4 {
+    font-weight: bold;
+    font-size: 18px;
 }

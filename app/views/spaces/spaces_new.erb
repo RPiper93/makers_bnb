@@ -2,36 +2,39 @@
 <main class="container col-6">
     <h2 class="text-center"><%= @space ? "Update Space" : "List a Space" %></h2>
     <form action="<%= @space ? "/spaces/update/#{@space.id}" : "/spaces/new" %>" method="post" enctype='multipart/form-data'>
-        <label for="name">
+        <label for="name" class="required">
             Name:
-            <input type="text" name="name" value="<%= @space.name if @space %>" required>
         </label>
-
-        <label for="description">
+        <input type="text" id="name" name="name" value="<%= @space.name if @space %>" required />
+        
+        <label for="description" class="required">
             Description:
-            <textarea name="description" cols="30" rows="5"><%= @space.description if @space %></textarea>
         </label>
-
-        <label for='price'>
-            Price:
-            <input type='number' name='price' step="0.01" value="<%= @space.price if @space %>" required class="width-200"/>
+        <textarea id="description" name="description" cols="30" rows="5"><%= @space.description if @space %></textarea>
+    
+        <label for="price" class="required">
+            Price per night:
         </label>
+        <input type='number' id="price" name='price' step="0.01" placeholder="£" value="<%= @space.price if @space %>" required class="width-200" />
 
-        <label for='date_from'>
+        <label for="date_from" class="required">
             Available From:
-            <input type='date' name='date_from' value="<%= @space.date_from if @space %>" required class="width-200"/>
         </label>
-
-        <label for="date_to">
+        <input type='date' id="date_from" name='date_from' value="<%= @space.date_from if @space %>" min="<%= @today %>" required class="width-200" />
+        
+        <label for="date_to" class="required">
             Available To:
-            <input type='date' name='date_to' value="<%= @space.date_to if @space %>" required class="width-200"/>
+        </label>    
+        <input type='date' id="date_to" name='date_to' value="<%= @space.date_to if @space %>" min="<%= @tomorrow %>"required class="width-200" />
+        
+        <label for="image" class="image-upload-btn width-200">
+            <svg class="icon icon-upload"><use xlink:href="#icon-upload"></use></svg>
+            Upload Image
         </label>
-
-        <label for='image'>
-            Upload Image:
-            <input type='file' name='image' class='width-200' />
-        </label>
-
-        <input type="submit" value="<%= @space ? "Update Space" : "List a Space" %>" class="btn btn-blue">
+        <input type='file' id="image" name="image" accept="image/*" class='width-200' /> <!-- onchange="trashUI()" -->
+        <button type="button" id="image-trash-btn" class="image-trash-btn hidden">
+            <svg class="icon icon-trash"><use xlink:href="#icon-trash"></use></svg>
+        </button>
+        <input type="submit" value="<%= @space ? "Update Space" : "List a Space" %>" class="btn btn-blue" />
     </form>
 </main>

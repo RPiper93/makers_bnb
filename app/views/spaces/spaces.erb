@@ -4,29 +4,29 @@
     <h2 class="text-center">Spaces</h2>
     <% if current_user %>
         <div class="block-center list-space-btn">
-            <form action="/spaces/new" method="get">
+            <form action="/spaces/new" method="GET">
                 <input type="submit" value="List a Space" class="btn btn-green">
             </form>
         </div>
     <% end %>
     <% if @spaces %>
-        <form action="/spaces/filter" method="post" class="date-filter">
+        <form action="/spaces/filter" method="POST" class="date-filter">
             <label class="fl">
-                Available from
-                <input type="date" name="date_from" value="<%= @date_from %>" required />
+                Available From:
+                <input type="date" id="date_from" name="date_from" value="<%= @date_from %>" min="<%= @today %>" required />
             </label>
             <label class="fl">
-                Available to
-                <input type="date" name="date_to" value="<%= @date_to %>" required />
+                Available To:
+                <input type="date" id="date_to" name="date_to" value="<%= @date_to %>" min="<%= @tomorrow %>" required />
             </label>
             <label class='fl'>
                 &nbsp; 
                 <input type="submit" value="Filter Spaces" class="btn" />
             </label>
         </form>
-        <form action="/spaces/filter-reset" method="post">
+        <form action="/spaces/filter-reset" method="POST">
             <input type="hidden" name="_method" value="delete" />
-            <input type="submit" value="Reset Filter" class="btn btn" />
+            <input type="submit" value="Reset Filter" class="btn" />
         </form>
         <ul class="list-spaces">
             <% @spaces.each do |space| %>
@@ -42,7 +42,7 @@
                                 <p><%= space.description %></p>
                             </div>
                             <div class="space-price">
-                                <p><b>Price per night:</b> £<%= sprintf("%0.02f", space.price) %></p>
+                                <p><strong>Price per night:</strong> £<%= format_price(space.price) %></p>
                                 <% if current_user %>
                                     <% if space.user_id == @user.id %>
                                         <form action="/spaces/update/<%= space.id %>">
@@ -50,11 +50,10 @@
                                         </form>
                                     <% end %>
                                 <% end %>
-
                             </div>
                         </div>
                         <div class='image-container fr'>
-                            <img src='<%= space.image_url %>' class='space-image' alt='house image' />
+                            <img src='<%= space.image_url %>' class='space-image' alt='MakersBnb Space image' />
                         </div> 
                     </article>
                 </li>
