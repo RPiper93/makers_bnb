@@ -21,15 +21,15 @@ module Helpers
     when :sign_up
       subject = "Welcome, #{current_user.first_name}, to MakersBnB!"
       body = "Thanks for signing up to MakersBnb!"
-      confirmation_string = "Sign-up confirmation email sent!"
+      confirmation_string = "Sign-up complete! Confirmation email sent!"
     when :create_space
       subject = "#{current_user.first_name}, your space has been listed on MakersBnB!"
       body = "Congratulations! Your space, #{space_name}, has been listed on MakersBnb."
-      confirmation_string = "Space listing confirmation email sent!"
+      confirmation_string = "Space listed! Confirmation email sent!"
     when :update_space
       subject = "#{current_user.first_name}, your space has been updated on MakersBnB!"
       body = "Congratulations! Your space, #{space_name}, has been updated on MakersBnb."
-      confirmation_string = "Space updated confirmation email sent!"
+      confirmation_string = "Space updated! Confirmation email sent!"
     end
 
     send_mail(recipient, subject, body, confirmation_string)
