@@ -8,7 +8,7 @@ module Helpers
   end
 
   def format_price(price)
-    "£"+sprintf("%0.02f",price)
+    "£" + sprintf("%0.02f", price)
   end
 
   def reset_date_filter
@@ -62,7 +62,7 @@ module Helpers
   def validate(space)
     validate_space(space)
     reject_unavailable_dates(space)
-    booking_from = space.bookings.map(&:from_date)
+    booking_from = space.bookings.map(&:date_from)
     booking_to = space.bookings.map(&:date_to)
     booked_dates = booking_from.concat(booking_to)
     request_range = (params[:date_from]..params[:date_to])

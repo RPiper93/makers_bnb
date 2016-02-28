@@ -37,8 +37,8 @@ feature 'Confirming a booking' do
     create_user(email: "not_sam@email.com")
     click_link("Sam's space")
     expect(page).to have_content('Unavailable from 23/02/16')
-    fill_in :start_date, with: Date.new(2016,02,23)
-    fill_in :end_date, with: Date.new(2016,03,28)
+    fill_in :date_from, with: Date.new(2016,02,23)
+    fill_in :date_to, with: Date.new(2016,03,28)
     click_button('Request a booking')
     expect(page).to have_content('Unavailable on these dates')
   end

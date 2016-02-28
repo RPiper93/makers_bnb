@@ -45,7 +45,7 @@ end
 def make_request
   create_user(first_name: "Joe",last_name: "Schmo", email: "joe@email.com" )
   click_link "Sam's space"
-  fill_in :start_date, with: Date.new(2016,02,23)
-  fill_in :end_date, with: Date.new(2016, 02, 24)
+  fill_in :date_from, with: Date.new(2016,02,23)
+  fill_in :date_to, with: Date.new(2016, 02, 24)
   click_button "Request a booking"
 end

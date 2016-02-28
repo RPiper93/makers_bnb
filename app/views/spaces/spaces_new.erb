@@ -31,10 +31,7 @@
             <svg class="icon icon-upload"><use xlink:href="#icon-upload"></use></svg>
             Upload Image
         </label>
-        <input type='file' id="image" name="image" accept="image/*" class='width-200' /> <!-- onchange="trashUI()" -->
-        <button type="button" id="image-trash-btn" class="image-trash-btn hidden">
-            <svg class="icon icon-trash"><use xlink:href="#icon-trash"></use></svg>
-        </button>
+        <input type='file' id="image" name="image" accept="image/*" class='width-200' />
         <input type="submit" value="<%= @space ? "Update Space" : "List a Space" %>" class="btn btn-blue" />
     </form>
 </main>

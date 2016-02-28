@@ -52,12 +52,14 @@
                                 <% end %>
                             </div>
                         </div>
-                        <div class='image-container fr'>
-                            <img src='<%= space.image_url %>' class='space-image' alt='MakersBnb Space image' />
-                        </div> 
-                    </article>
-                </li>
-            <% end %>
-        </ul>
-    <% end %>
-</main>
+                        <% if space.image_url %>
+                            <div class='image-container fr'>
+                                <img src='<%= space.image_url %>' class='space-image' alt='MakersBnb Space image' />
+                            </div> 
+                            <% end %>
+                        </article>
+                    </li>
+                <% end %>
+            </ul>
+        <% end %>
+    </main>

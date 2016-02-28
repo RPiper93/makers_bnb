@@ -18,7 +18,6 @@ class MakersBnb < Sinatra::Base
 
   post '/spaces/new' do
     validate_space_availability(params[:date_from], params[:date_to], '/spaces/new')
-    puts "Image param: #{params[:image]}"
     attributes = {
       name: params[:name],
       description: params[:description],
@@ -36,8 +35,6 @@ class MakersBnb < Sinatra::Base
 
   post '/spaces/update/:id' do
     validate_space_availability(params[:date_from], params[:date_to], '/spaces/update/' + params[:id])
-    puts ":image param: #{params[:image]}"
-    puts "'image' param: #{params['image']}"
 
     attributes = {
       name: params[:name],

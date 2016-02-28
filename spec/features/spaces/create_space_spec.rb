@@ -32,6 +32,6 @@ feature "Create a space" do
     create_user
     create_space
     Capybara.default_selector = :css
-    expect(page).to have_selector("img.space-image")
+    expect(page).to have_selector("img")
   end
 end
