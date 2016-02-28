@@ -17,7 +17,6 @@ module Helpers
   end
 
   def prepare_mail(mail_type, recipient, space_name=nil)
-    puts "#prepare_mail called!"
     case mail_type
     when :sign_up
       subject = "Welcome, #{current_user.first_name}, to MakersBnB!"
