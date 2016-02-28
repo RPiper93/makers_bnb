@@ -8,7 +8,7 @@ class MakersBnb < Sinatra::Base
                              user_id: current_user.id, 
                              space_id: params[:space_id])
     if request.saved?
-      flash.next[:saved] = ['Your booking request has been sent']
+      prepare_mail(:request_submitted, current_user, space.name)
       redirect('/spaces')
     end
   end

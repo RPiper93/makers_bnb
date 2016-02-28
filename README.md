@@ -150,4 +150,3 @@ As a user
 So that I can confirm my booking request has been submitted
 I want to receive a notification email
 ```
-:construction:
