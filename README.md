@@ -162,3 +162,10 @@ As a user
 So that I can be notified that my space was requested
 I want to receive a notification email
 ```
+
+```
+As a user
+So that I can be notified If my booking was denied 
+I want to receive a notification email
+```
+:construction:
