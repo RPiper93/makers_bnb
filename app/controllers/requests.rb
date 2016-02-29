@@ -8,8 +8,8 @@ class MakersBnb < Sinatra::Base
                              user_id: current_user.id, 
                              space_id: params[:space_id])
     if request.saved?
-      prepare_mail(:request_submitted, current_user, space.name)
-      prepare_mail(:request_received, User.get(Space.get(space.id).user_id), space.name)
+      #prepare_mail(:request_submitted, current_user, space.name)
+      #prepare_mail(:request_received, User.get(Space.get(space.id).user_id), space.name)
       redirect('/spaces')
     end
   end
@@ -18,8 +18,11 @@ class MakersBnb < Sinatra::Base
     @spaces = Space.all(user_id: current_user.id) 
     @requests = @spaces.requests
     @space_names =  []
+    @guest_names = []
     @requests.each do |request|
       @space_names << Space.get(request.space_id).name
+      guest = User.get(request.user_id)
+      @guest_names << "#{guest.first_name} #{guest.last_name}"
     end
     erb :'requests/requests'
   end
@@ -27,6 +30,7 @@ class MakersBnb < Sinatra::Base
   get '/requests/confirm/:id' do
     @booking_request = Request.get(params[:id])
     @space = Space.get(@booking_request.space_id)
+    @guest = User.get(@booking_request.user_id)
     erb :'requests/confirm_requests'
   end
 
@@ -52,9 +56,9 @@ class MakersBnb < Sinatra::Base
                    user_id: request.user_id, 
                    space_id: request.space_id)
 
-    prepare_mail(:request_confirmed, User.get(request.user_id), space.name)
+    #prepare_mail(:request_confirmed, User.get(request.user_id), space.name)
     denied_users.each do |user|
-      prepare_mail(:request_denied, User.get(user.id), space.name)
+      #prepare_mail(:request_denied, User.get(user.id), space.name)
     end
 
     redirect('/requests')

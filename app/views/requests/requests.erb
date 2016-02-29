@@ -3,16 +3,25 @@
     <h2 class="text-center">Requests</h2>
 
     <h4>Requests I've received</h4>
-    <% @requests.each do |request| %>
-        <ul class="list-spaces">
+    <ul class="list-spaces">
+        <% @requests.each do |request| %>
             <li>
-                <%= @space_names.shift %>
-                <%= request.status %>
-                <%= format_date(request.date_from) %> - <%= format_date(request.date_to) %>
-                <% if request.status == 'Not Confirmed' %>
-                    <a id="" href="/requests/confirm/<%= request.id %>">Confirm?</a>
-                <% end %>
+                <article class="clearfix">
+                    <section class="fl">
+                        <header>
+                            <h4><%= @space_names.shift %></h4>
+                        </header>
+                        <div class="space-desc">
+                            <p><%= format_date(request.date_from) %> – <%= format_date(request.date_to) %></p>
+                            <p><%= @guest_names.shift %></p>
+                            <strong><%= request.status %></strong>
+                        </div>
+                    </section>
+                    <% if request.status == 'Not Confirmed' %>
+                        <a href="/requests/confirm/<%= request.id %>" class="btn btn-blue width-200 fr">Confirm?</a>
+                    <% end %>
+                </article>
             </li>
-        </ul>
-    <% end %>
+        <% end %>    
+    </ul>
 </main>

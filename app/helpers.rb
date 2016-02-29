@@ -8,7 +8,7 @@ module Helpers
   end
 
   def format_price(price)
-    "£" + sprintf("%0.02f", price)
+    "£" + sprintf("%0.02f", price).reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
   end
 
   def reset_date_filter

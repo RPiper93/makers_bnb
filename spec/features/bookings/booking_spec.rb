@@ -17,10 +17,10 @@ feature 'Confirming a booking' do
     click_button 'Sign out'
     sign_in
     click_button 'Requests'
-    expect(page).to have_content('Sam\'s space Not Confirmed 23/02/16 - 24/02/16')
+    expect(page).to have_content('Sam\'s space 23/02/16 – 24/02/16 Joe Schmo Not Confirmed')
     click_link('Confirm?')
     click_button('Confirm Request')
-    expect(page).to have_content('Sam\'s space Confirmed 23/02/16 - 24/02/16')
+    expect(page).to have_content('Sam\'s space 23/02/16 – 24/02/16 Joe Schmo Confirmed')
   end
 
   scenario 'booked dates change to unavailable' do

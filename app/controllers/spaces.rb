@@ -30,7 +30,7 @@ class MakersBnb < Sinatra::Base
     }
 
     Space.create(attributes)
-    prepare_mail(:create_space, current_user, params[:name])
+    #prepare_mail(:create_space, current_user, params[:name])
     redirect('/spaces')
   end
 
@@ -49,7 +49,7 @@ class MakersBnb < Sinatra::Base
     }
 
     Space.first(id: params[:id]).update(attributes)
-    prepare_mail(:update_space, current_user, params[:name])
+    #prepare_mail(:update_space, current_user, params[:name])
     redirect('/spaces')
   end
 

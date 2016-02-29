@@ -12,7 +12,7 @@ class MakersBnb < Sinatra::Base
                        password_confirmation: params[:password_confirmation])
     if user.saved? 
       session[:user] = user.id
-      prepare_mail(:sign_up, current_user)
+      #prepare_mail(:sign_up, current_user)
       redirect('/spaces')
     else 
       flash.next[:errors] = user.errors.full_messages
