@@ -10,6 +10,20 @@
 ###Description
 Online, account based platform for listing, viewing and booking 'spaces'. Users can sign-up to the site, receiving a confirmation email upon doing so, and are automatically logged in to the platform. Signed in users can view all currently listed spaces, with the option to filter them by availability. Users can also list their own spaces and provide: name, description, price, availability as well as uploading a photo. They can update listings they have already made. Users can make booking requests for spaces subject to availability. The owner of the space can confirm requests, upon doing so automatically denying other requests with clashing dates.
 
+###Screenshots
+
+![Image of Sign Up Page]
+(http://imgur.com/KW5WPBJ)
+
+![Image of Sign In Page]
+(http://imgur.com/0LNrNUU)
+
+![Image of Space Listing Page]
+(http://imgur.com/2dWKsqr)
+
+![Image of Space Page]
+(http://imgur.com/keMmnhP)
+
 ###Instructions
 To deploy local version
 ```
