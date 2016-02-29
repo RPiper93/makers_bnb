@@ -31,17 +31,21 @@ module Helpers
       body = "Congratulations! Your space, '#{space_name}', has been updated on MakersBnb."
       confirmation_string = "Space updated! Confirmation email sent."
     when :request_submitted
-      subject = "#{recipient.first_name}, your booking request has been submitted on MakersBnB!"
+      subject = "#{recipient.first_name}, your MakersBnB booking request has been submitted!"
       body = "You submitted a booking request for: '#{space_name}' on MakersBnb."
       confirmation_string = "Booking request submitted! Confirmation email sent."
+    when :request_confirmed
+      subject = "#{recipient.first_name}, your MakersBnB booking request has been confirmed!"
+      body = "Your booking request for: '#{space_name}' on MakersBnb has been confirmed."
+      confirmation_string = "Booking request confirmed! Confirmation emails sent to both parties."
     end
 
-    send_mail(recipient, subject, body, confirmation_string)
+    send_mail(recipient.email, subject, body, confirmation_string)
   end
 
-  def send_mail(recipient, subject, body, confirmation_string)
+  def send_mail(recipient_email, subject, body, confirmation_string)
     Pony.mail({
-      to: recipient.email,
+      to: recipient_email,
       from: ENV['from'],
       subject: subject,
       body: body,
