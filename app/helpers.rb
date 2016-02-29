@@ -37,7 +37,7 @@ module Helpers
     when :request_confirmed
       subject = "#{recipient.first_name}, your MakersBnB booking request has been confirmed!"
       body = "Your booking request for: '#{space_name}' on MakersBnb has been confirmed."
-      confirmation_string = "Booking request confirmed! Confirmation emails sent to both parties."
+      confirmation_string = "Booking request confirmed! Confirmation email sent to your guest."
     end
 
     send_mail(recipient.email, subject, body, confirmation_string)
