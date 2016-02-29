@@ -10,6 +10,20 @@
 ###Description
 Online, account based platform for listing, viewing and booking 'spaces'. Users can sign-up to the site, receiving a confirmation email upon doing so, and are automatically logged in to the platform. Signed in users can view all currently listed spaces, with the option to filter them by availability. Users can also list their own spaces and provide: name, description, price, availability as well as uploading a photo. They can update listings they have already made. Users can make booking requests for spaces subject to availability. The owner of the space can confirm requests, upon doing so automatically denying other requests with clashing dates.
 
+###Screenshots
+
+![Image of Sign Up Page]
+(http://i.imgur.com/KW5WPBJ.png)
+
+![Image of Sign In Page]
+(http://i.imgur.com/0LNrNUU.png)
+
+![Image of Space Listing Page]
+(http://i.imgur.com/2dWKsqr.png)
+
+![Image of Space Page]
+(http://i.imgur.com/keMmnhP.png)
+
 ###Instructions
 To deploy local version
 ```
@@ -19,7 +33,8 @@ $ bundle # Installs all dependencies
 $ rackup # Runs the application locally
 ```
 
-To access live site: 
+To access live site: https://makers-bnb.herokuapp.com
+
 ###Technologies
 - Ruby
 - Javascript
@@ -36,7 +51,7 @@ To access live site:
 ###Known Issues
 - Incomplete styling(requests/confirm requests view)
 - Requests cannot be deleted by the requester
-- Spaces cannot be removed by the owener
+- Spaces cannot be removed by the owner
 - User account details cannot be updated
 - Not responsive 
 - Email/Image upload tests are not stubbed
