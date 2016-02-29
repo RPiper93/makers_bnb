@@ -156,3 +156,10 @@ As a user
 So that I can know my booking has been confirmed
 I want to receive a notification email
 ```
+
+```
+As a user
+So that I can be notified that my space was requested
+I want to receive a notification email
+```
+:construction:
