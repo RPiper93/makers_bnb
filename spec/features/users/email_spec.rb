@@ -17,15 +17,15 @@ feature 'Email notification' do
     expect(page).to have_content('Space updated! Confirmation email sent.')
   end
 
-  scenario 'sent upon successfully submitting a booking request' do
+  scenario 'sent to both guest and host upon successfully submitting a booking request' do
     create_user
     create_space
     click_button('Sign out')
     make_request
-    expect(page).to have_content('Booking request submitted! Confirmation email sent.')
+    expect(page).to have_content('Booking request submitted! Confirmation emails sent to both parties.')
   end
 
-  scenario 'sent upon confirmation of the user\'s booking request' do
+  scenario 'sent to a guest when the host confirms their booking request' do
     create_user
     create_space
     click_button('Sign out')
