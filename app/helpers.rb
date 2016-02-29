@@ -20,28 +20,32 @@ module Helpers
     case mail_type
     when :sign_up
       subject = "Welcome to MakersBnB, #{recipient.first_name}!"
-      body = "Thanks for signing up to MakersBnb!"
+      body = "Thanks for signing up to MakersBnB!"
       confirmation_string = "Sign-up complete! Confirmation email sent."
     when :create_space
-      subject = "#{recipient.first_name}, your space has been listed on MakersBnB!"
-      body = "Great! Your space: { #{space_name} } has been listed on MakersBnb."
+      subject = "#{recipient.first_name}, you listed a space on MakersBnB!"
+      body = "Great! Your space: { #{space_name} } has been listed on MakersBnB."
       confirmation_string = "Space listed! Confirmation email sent."
     when :update_space
-      subject = "#{recipient.first_name}, your space has been updated on MakersBnB!"
-      body = "Wahoo! Your space: { #{space_name} } has been updated on MakersBnb."
+      subject = "#{recipient.first_name}, you updated a space on MakersBnB!"
+      body = "Wahoo! Your space: { #{space_name} } has been updated on MakersBnB."
       confirmation_string = "Space updated! Confirmation email sent."
     when :request_submitted
-      subject = "#{recipient.first_name}, your MakersBnB booking request has been submitted!"
-      body = "Nice! You submitted a booking request for: { #{space_name} } on MakersBnb."
+      subject = "#{recipient.first_name}, you submitted a booking request on MakersBnB!"
+      body = "Nice! You submitted a booking request for: { #{space_name} } on MakersBnB."
       confirmation_string = "Booking request submitted! Confirmation emails sent to both parties."
     when :request_confirmed
-      subject = "#{recipient.first_name}, your MakersBnB booking request has been confirmed!"
-      body = "Awesome! Your booking request for: { #{space_name} } on MakersBnb has been confirmed."
-      confirmation_string = "Booking request confirmed! Confirmation email sent to your guest."
+      subject = "#{recipient.first_name}, your MakersBnB booking request was confirmed!"
+      body = "Awesome! Your booking request for: { #{space_name} } on MakersBnB has been confirmed."
+      confirmation_string = "Booking request confirmed! Confirmation email sent to your guest; conflicting requests have been denied."
     when :request_received
       subject = "#{recipient.first_name}, you received a booking request on MakersBnB!"
-      body = "Sweet! Your space: { #{space_name} } has received a booking request on MakersBnb."
+      body = "Sweet! Your space: { #{space_name} } has received a booking request on MakersBnB."
       confirmation_string = "Booking request submitted! Confirmation emails sent to both parties."
+    when :request_received
+      subject = "#{recipient.first_name}, your MakersBnB booking request was denied"
+      body = "Dang! Your booking request for: { #{space_name} } on MakersBnB was denied."
+      confirmation_string = "Booking request confirmed! Confirmation email sent to your guest; conflicting requests have been denied."
     end
 
     send_mail(recipient.email, subject, body, confirmation_string)

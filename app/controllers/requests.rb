@@ -36,11 +36,13 @@ class MakersBnb < Sinatra::Base
     request = Request.get(params[:id])
     space = Space.get(request.space_id)
     range = (request.date_from..request.date_to)
+    denied_users = []
 
     Request.all.each do |request|
       if request.space_id == space.id && request.status == 'Not Confirmed'
         if range.include?(request.date_from) || range.include?(request.date_to)
           request.update(status: 'Denied')
+          denied_users << request.user_id
         end
       end
     end
@@ -51,6 +53,10 @@ class MakersBnb < Sinatra::Base
                    space_id: request.space_id)
 
     prepare_mail(:request_confirmed, User.get(request.user_id), space.name)
+    denied_users.each do |user|
+      prepare_mail(:request_denied, User.get(user.id), space.name)
+    end
+
     redirect('/requests')
   end
 end

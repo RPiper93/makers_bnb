@@ -168,4 +168,3 @@ As a user
 So that I can be notified If my booking was denied 
 I want to receive a notification email
 ```
-:construction:
