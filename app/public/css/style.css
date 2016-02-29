@@ -326,3 +326,15 @@ a.btn-blue {
 strong {
     font-weight: bold;
 }
+
+footer p {
+    margin: 6% 0 3% 0;
+    color: #b8b8b8;
+    font-size: 0.85em; 
+    text-align: center;
+}
+
+footer a {
+    color: #4eb96e;
+    text-decoration: none;
+}

@@ -1,14 +1,14 @@
 <% if flash[:errors] && !flash[:errors].empty? %>
     <ul id = 'errors'>
         <% flash[:errors].each do |error| %>
-            <li> <%= error %> </li>
+            <li class="text-center"> <%= error %> </li>
         <% end %>
     </ul>
 <% end %>    
 <% if flash[:booked] && !flash[:booked].empty? %>
     <ul id = 'booked'>
         <% flash[:booked].each do |booked| %>
-            <li> <%= booked %> </li>
+            <li class="text-center"> <%= booked %> </li>
         <% end %>
     </ul>
 <% end %>
