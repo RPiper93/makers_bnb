@@ -24,20 +24,24 @@ module Helpers
       confirmation_string = "Sign-up complete! Confirmation email sent."
     when :create_space
       subject = "#{recipient.first_name}, your space has been listed on MakersBnB!"
-      body = "Congratulations! Your space, '#{space_name}', has been listed on MakersBnb."
+      body = "Great! Your space: { #{space_name} } has been listed on MakersBnb."
       confirmation_string = "Space listed! Confirmation email sent."
     when :update_space
       subject = "#{recipient.first_name}, your space has been updated on MakersBnB!"
-      body = "Congratulations! Your space, '#{space_name}', has been updated on MakersBnb."
+      body = "Wahoo! Your space: { #{space_name} } has been updated on MakersBnb."
       confirmation_string = "Space updated! Confirmation email sent."
     when :request_submitted
       subject = "#{recipient.first_name}, your MakersBnB booking request has been submitted!"
-      body = "You submitted a booking request for: '#{space_name}' on MakersBnb."
-      confirmation_string = "Booking request submitted! Confirmation email sent."
+      body = "Nice! You submitted a booking request for: { #{space_name} } on MakersBnb."
+      confirmation_string = "Booking request submitted! Confirmation emails sent to both parties."
     when :request_confirmed
       subject = "#{recipient.first_name}, your MakersBnB booking request has been confirmed!"
-      body = "Your booking request for: '#{space_name}' on MakersBnb has been confirmed."
+      body = "Awesome! Your booking request for: { #{space_name} } on MakersBnb has been confirmed."
       confirmation_string = "Booking request confirmed! Confirmation email sent to your guest."
+    when :request_received
+      subject = "#{recipient.first_name}, you received a booking request on MakersBnB!"
+      body = "Sweet! Your space: { #{space_name} } has received a booking request on MakersBnb."
+      confirmation_string = "Booking request submitted! Confirmation emails sent to both parties."
     end
 
     send_mail(recipient.email, subject, body, confirmation_string)

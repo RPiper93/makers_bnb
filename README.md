@@ -162,4 +162,3 @@ As a user
 So that I can be notified that my space was requested
 I want to receive a notification email
 ```
-:construction:

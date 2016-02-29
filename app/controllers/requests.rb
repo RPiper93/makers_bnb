@@ -9,6 +9,7 @@ class MakersBnb < Sinatra::Base
                              space_id: params[:space_id])
     if request.saved?
       prepare_mail(:request_submitted, current_user, space.name)
+      prepare_mail(:request_received, User.get(Space.get(space.id).user_id), space.name)
       redirect('/spaces')
     end
   end
