@@ -13,16 +13,16 @@ Online, account based platform for listing, viewing and booking 'spaces'. Users 
 ###Screenshots
 
 ![Image of Sign Up Page]
-(http://imgur.com/KW5WPBJ)
+(http://i.imgur.com/KW5WPBJ.png)
 
 ![Image of Sign In Page]
-(http://imgur.com/0LNrNUU)
+(http://i.imgur.com/0LNrNUU.png)
 
 ![Image of Space Listing Page]
-(http://imgur.com/2dWKsqr)
+(http://i.imgur.com/2dWKsqr.png)
 
 ![Image of Space Page]
-(http://imgur.com/keMmnhP)
+(http://i.imgur.com/keMmnhP.png)
 
 ###Instructions
 To deploy local version
