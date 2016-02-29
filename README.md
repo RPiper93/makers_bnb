@@ -33,7 +33,8 @@ $ bundle # Installs all dependencies
 $ rackup # Runs the application locally
 ```
 
-To access live site: 
+To access live site: https://makers-bnb.herokuapp.com
+
 ###Technologies
 - Ruby
 - Javascript
@@ -50,7 +51,7 @@ To access live site:
 ###Known Issues
 - Incomplete styling(requests/confirm requests view)
 - Requests cannot be deleted by the requester
-- Spaces cannot be removed by the owener
+- Spaces cannot be removed by the owner
 - User account details cannot be updated
 - Not responsive 
 - Email/Image upload tests are not stubbed
