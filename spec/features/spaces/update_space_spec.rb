@@ -2,9 +2,7 @@ feature 'Update a space' do
   scenario 'updates the details of the logged-in user\'s space' do
     create_user
     create_space
-    click_button('Update Space')
-    fill_in(:name, with: "Sam's NEW space")
-    click_button('Update Space')
+    update_space
     expect(page).not_to have_content("Sam's space")
     expect(page).to have_content("Sam's NEW space")
   end

@@ -48,9 +48,12 @@
             </div>
         </header>
         <%= partial :svg_icons %>
-        <%= partial :flashes %>
+        <div class="text-center">
+            <%= partial :flashes %>
+        </div>
         <%= yield %>
         <footer>
+            <p>A <a href="http://www.makersacademy.com/">Makers Academy</a> project. <a href="https://github.com/RPiper93/makers_bnb"> Fork us on GitHub!</a>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
             <script src="/src/makersbnb-interface.js"></script>
             <script src="/src/svgxuse.js"></script>
