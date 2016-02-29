@@ -35,6 +35,6 @@ feature 'Email notification' do
     click_button('Requests')
     click_link('Confirm?')
     click_button('Confirm Request')
-    expect(page).to have_content('Booking request confirmed! Confirmation email sent to your guest.')
+    expect(page).to have_content('Booking request confirmed! Confirmation email sent to your guest; conflicting requests have been denied.')
   end
 end
