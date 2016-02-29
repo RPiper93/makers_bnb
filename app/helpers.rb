@@ -16,12 +16,28 @@ module Helpers
     session[:date_to] = nil
   end
 
-  def send_mail
+  def prepare_mail(mail_type, recipient, space_name=nil)
+    puts "#prepare_mail called!"
+    case mail_type
+    when :sign_up
+      subject = "Welcome, #{current_user.first_name}, to MakersBnB!"
+      body = "Thanks for signing up to MakersBnb!"
+      confirmation_string = "Sign-up confirmation email sent!"
+    when :create_space
+      subject = "#{current_user.first_name}, your space has been listed on MakersBnB!"
+      body = "Congratulations! Your space, #{space_name}, has been listed on MakersBnb."
+      confirmation_string = "Space listing confirmation email sent!"
+    end
+
+    send_mail(recipient, subject, body, confirmation_string)
+  end
+
+  def send_mail(recipient, subject, body, confirmation_string)
     Pony.mail({
-      to: current_user.email,
+      to: recipient,
       from: ENV['from'],
-      subject: "Welcome #{current_user.first_name} to MakersBnB!",
-      body: 'Thanks for signing up to MakersBnb!',
+      subject: subject,
+      body: body,
       via: :smtp,
       via_options: {
         address:              'smtp.gmail.com',
@@ -34,7 +50,7 @@ module Helpers
       }
     })
 
-    flash.next[:errors] = ['Sign-up confirmation email sent']
+    flash.next[:saved] = [confirmation_string]
   end
 
   def reject_booking_conflicts(date, range)

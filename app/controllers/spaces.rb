@@ -30,6 +30,7 @@ class MakersBnb < Sinatra::Base
     }
 
     Space.create(attributes)
+    prepare_mail(:create_space, current_user.email, params[:name])
     redirect('/spaces')
   end
 
