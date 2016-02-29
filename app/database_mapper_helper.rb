@@ -7,5 +7,4 @@ require_relative 'models/booking'
 
 DataMapper.setup(:default, "postgres://localhost/makers_bnb_#{ENV['RACK_ENV']}")
 DataMapper::Logger.new($stdout, :debug)
-
 DataMapper.finalize

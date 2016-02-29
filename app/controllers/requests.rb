@@ -1,17 +1,9 @@
 class MakersBnb < Sinatra::Base
   post '/request/new' do
     space = Space.get(params[:space_id])
-    if Date.parse(params[:start_date]) < space.date_from || Date.parse(params[:start_date]) > space.date_to
-    flash.next[:booked] = ['Dates outside of range']
-    redirect('/space/' + params[:space_id])
-    end
-    booking_from = space.bookings.map(&:from_date)
-    booking_to = space.bookings.map(&:end_date)
-    request_range=(params[:start_date]..params[:end_date])
-    check_bookings(booking_from, request_range)
-    check_bookings(booking_to, request_range)
-    request = Request.create(start_date: params[:start_date],
-                             end_date: params[:end_date],
+    validate(space) 
+    request = Request.create(date_from: params[:date_from],
+                             date_to: params[:date_to],
                              status: "Not Confirmed",
                              user_id: current_user.id, 
                              space_id: params[:space_id])
@@ -19,26 +11,41 @@ class MakersBnb < Sinatra::Base
       flash.next[:saved] = ['Your booking request has been sent']
       redirect('/spaces')
     end
-
   end
 
   get '/requests' do
-    user = current_user
-    @spaces = user.spaces
-    erb :requests
+    @spaces = Space.all(user_id: current_user.id) 
+    @requests = @spaces.requests
+    @space_names =  []
+    @requests.each do |request|
+      @space_names << Space.get(request.space_id).name
+    end
+    erb :'requests/requests'
   end
 
   get '/requests/confirm/:id' do
     @booking_request = Request.get(params[:id])
     @space = Space.get(@booking_request.space_id)
-    erb :confirm_requests
+    erb :'requests/confirm_requests'
   end
 
   post '/request/confirm' do
     Request.first(id: params[:id]).update(status: "Confirmed") 
-    request = Request.get(params[:id])   
-    Booking.create(from_date: request.start_date, 
-                   end_date: request.end_date, 
+
+    request = Request.get(params[:id])
+    space = Space.get(request.space_id)
+    range = (request.date_from..request.date_to)
+
+    Request.all.each do |request|
+      if request.space_id == space.id && request.status == 'Not Confirmed'
+        if range.include?(request.date_from) || range.include?(request.date_to)
+          request.update(status: 'Denied')
+        end
+      end
+    end
+
+    Booking.create(date_from: request.date_from, 
+                   date_to: request.date_to, 
                    user_id:request.user_id, 
                    space_id: request.space_id)
     redirect('/requests')

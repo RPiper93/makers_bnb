@@ -1,0 +1,42 @@
+<% @title= "#{@space.name} | " %>
+<main class="container col-6">
+    
+    <section>
+        <h2 class="text-center"><%= @space.name %></h2>
+        <img id="headline-image" src="<%=@space.image_url%>">
+        <h4> Price </h4>
+        <p> <%=format_price(@space.price) %> </p>
+        <br />
+        <h4> Description </h4>
+        <p> <%=@space.description%> </p>
+        <br />
+    </section>
+
+    <section>
+    <h4> Book </h4>
+        Available From: <%= format_date(@space.date_from) %> Available To: <%= format_date(@space.date_to) %>
+        <% @bookings.each do |booking| %>
+            Unavailable from <%= format_date(booking.date_from) %> - <%= format_date(booking.date_to) %> 
+            </br>
+        <%end%>
+
+        <% if current_user %>
+            <% if current_user.id != @space.user_id %>
+              <form action="/request/new" method="post">
+                  <label for="date_from" class="required">
+                      Start Date:
+                  </label>
+                  <input type="date" id="date_from" name="date_from" min="<%= @today %>" required />
+
+                  <label for="date_to" class="required">
+                      End Date:
+                  </label>
+                  <input type="date" id="date_to" name="date_to" min="<%= @tomorrow %>" required />
+
+                  <input type="hidden" name="space_id" value= "<%= @space.id %>" />
+                  <input type="submit" value="Request a booking" class="btn btn-blue" />
+              </form>
+            <% end %>
+        <% end %>
+    </section>
+</main>

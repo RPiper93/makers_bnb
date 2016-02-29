@@ -1,67 +1,59 @@
 <!DOCTYPE>
-  <html lang="en">
+<html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title><%= @title if @title %>MakersBnB</title>
+        <title><%= @title if @title %> MakersBnB </title>
         <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,500,300,700' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" type="text/css" href="/css/reset.css">
         <link rel="stylesheet" type="text/css" href="/css/style.css">
     </head>
     <body>
-      <header class="main-header">
-        <div class="container">
-          <div class="logo fl">
-            <h1>
-              <a href="/"><img src="/images/logo.png" alt="MakersBnB" width="150" height="42"> MakersBnB</a>
-            </h1>
-          </div>
-          <nav class="fr">
-            <div class="user-welcome fl">
-              Welcome <%=current_user.first_name if current_user%>
+        <header class="main-header">
+            <div class="container">
+                <div class="logo fl">
+                    <h1>
+                        <a href="/"><img src="/images/logo.png" alt="MakersBnB" width="150" height="42"> MakersBnB </a>
+                    </h1>
+                </div>
+                <nav class="fr">
+                    <div class="user-welcome fl">
+                        Welcome <%= current_user.first_name if current_user %>
+                    </div>
+                    <div id = 'ui' class="user-login-links fl">
+                        <div class="fl">
+                            <form>
+                                <button type="submit" formmethod="get" formaction="/spaces" class="btn"> Spaces </button>
+                            </form>
+                        </div>
+                        <div class="fl">
+                            <%if current_user%>
+                                <form action ='/'>
+                                    <button type='submit' formaction='/requests' formmethod = 'get' class="btn"> Requests </button>
+                                </form>
+                            <% end %>
+                        </div>
+                        <div class="fl">
+                            <form action ='/' method = 'post'>
+                                <%if current_user%>
+                                    <input type = 'hidden' name = '_method' value = 'delete' />
+                                    <input type = 'submit' value = "Sign out" class="btn"/>
+                                <% else %>
+                                    <button type = 'submit' formaction = '/user/sign_in' formmethod = 'get' class="btn"> Sign in </button>
+                                    <button type = 'submit' formaction = '/' formmethod = 'get' class="btn"> Sign up </button>
+                                <%end%>
+                            </form>
+                        </div>
+                    </div>
+                </nav>
             </div>
-            <div id = 'ui' class="user-login-links fl">
-              <div class="fl">
-                <form action ='/'>
-                    <button type='submit' formaction='/requests' formmethod = 'get' class="btn"> Requests </button>
-                </form>
-              </div>
-              <div class="fl">
-                <form action ='/' method = 'post'>
-                    <%if current_user%>
-                        <input type = 'hidden' name = '_method' value = 'delete' />
-                        <input type = 'submit' value = "Sign out" class="btn"/>
-                    <% else %>
-                        <button type = 'submit' formaction = '/user/sign_in' formmethod = 'get' class="btn"> Sign in </button>
-                        <button type = 'submit' formaction = '/' formmethod = 'get' class="btn"> Sign up </button>
-                    <%end%>
-                </form>
-              </div>
-            </div>
-          </nav>
-        </div>
-
-    </header>
-    <% if flash[:booked] && !flash[:booked].empty? %>
-      <ul id = 'booked'>
-            <% flash[:booked].each do |booked| %>
-                <li> <%= booked %> </li>
-            <% end %>
-        </ul>
-    <% end %>
-
-
-    <% if flash[:errors] && !flash[:errors].empty? %>
-        <ul id = 'errors'>
-            <% flash[:errors].each do |error| %>
-                <li> <%= error %> </li>
-            <% end %>
-        </ul>
-    <% end %>
-
-
-      <% if flash[:saved] && !flash[:saved].empty? %>
-          <%= flash[:saved][0] %>
-      <% end %>
-      <%= yield %>
+        </header>
+        <%= partial :svg_icons %>
+        <%= partial :flashes %>
+        <%= yield %>
+        <footer>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+            <script src="/src/makersbnb-interface.js"></script>
+            <script src="/src/svgxuse.js"></script>
+        </footer>
     </body>
 </html>

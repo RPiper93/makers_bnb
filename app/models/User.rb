@@ -9,7 +9,7 @@ class User
   property :email, String, format: :email_address, required: true, unique: true
   property :password_hash, Text, required: true
   has n, :requests
-  
+
   has n, :spaces
   has n, :bookings
 

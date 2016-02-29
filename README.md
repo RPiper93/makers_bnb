@@ -7,16 +7,41 @@
 - Russell Vaughan ([russellvaughan](https://github.com/russellvaughan))
 - Tom Pickard ([tcpickard94](https://github.com/tcpickard94))
 
-#####Details
-- Date created: 22/02/16 @ 14:24
-- Date last updated: 25/02/16 @ 01:40
-
 ###Description
+Online, account based platform for listing, viewing and booking 'spaces'. Users can sign-up to the site, receiving a confirmation email upon doing so, and are automatically logged in to the platform. Signed in users can view all currently listed spaces, with the option to filter them by availability. Users can also list their own spaces and provide: name, description, price, availability as well as uploading a photo. They can update listings they have already made. Users can make booking requests for spaces subject to availability. The owner of the space can confirm requests, upon doing so automatically denying other requests with clashing dates.
 
 ###Instructions
+To deploy local version
+```
+$ git clone https://github.com/RPiper93/makers_bnb.git
+$ cd makers_bnb
+$ bundle # Installs all dependencies
+$ rackup # Runs the application locally
+```
 
+To access live site: 
 ###Technologies
+- Ruby
+- Javascript
+- jQuery
+- Sinatra
+- DataMapper
+- Cloudinary 
+- Bcrypt
+- Rspec
+- Capybara
+- Database Cleaner
+- Rake
 
+###Known Issues
+- Incomplete styling(requests/confirm requests view)
+- Requests cannot be deleted by the requester
+- Spaces cannot be removed by the owener
+- User account details cannot be updated
+- Not responsive 
+- Email/Image upload tests are not stubbed
+- Users cannot view requests they have made
+ 
 ###Implemented User Stories
 ```
 As a user
@@ -44,7 +69,6 @@ I want to be able to sign-in
 
 ```
 As a user
-
 So that I can identify my property's
 I want to be able to give each space a name
 ```
@@ -95,4 +119,16 @@ I want to be able to filter spaces by date
 As a user
 So that I can confirm a booking
 I can approve a request
+```
+
+```
+As a user
+So that I can be notified that my sign-up has been successful
+I want to receive a notification email
+```
+
+```
+As a user
+So that I can entertain multiple offers
+I want to be able to receive multiple booking requests until one is confirmed
 ```

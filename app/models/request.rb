@@ -2,8 +2,8 @@ class Request
   include DataMapper::Resource
 
   property :id, Serial
-  property :start_date, Date
-  property :end_date, Date
+  property :date_from, Date, required: true
+  property :date_to, Date, required: true
   property :status, String
 
   belongs_to :user
