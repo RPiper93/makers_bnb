@@ -16,12 +16,35 @@ module Helpers
     session[:date_to] = nil
   end
 
-  def send_mail
+  def prepare_mail(mail_type, recipient, space_name=nil)
+    case mail_type
+    when :sign_up
+      subject = "Welcome to MakersBnB, #{recipient.first_name}!"
+      body = "Thanks for signing up to MakersBnb!"
+      confirmation_string = "Sign-up complete! Confirmation email sent."
+    when :create_space
+      subject = "#{recipient.first_name}, your space has been listed on MakersBnB!"
+      body = "Congratulations! Your space, '#{space_name}', has been listed on MakersBnb."
+      confirmation_string = "Space listed! Confirmation email sent."
+    when :update_space
+      subject = "#{recipient.first_name}, your space has been updated on MakersBnB!"
+      body = "Congratulations! Your space, '#{space_name}', has been updated on MakersBnb."
+      confirmation_string = "Space updated! Confirmation email sent."
+    when :request_submitted
+      subject = "#{recipient.first_name}, your booking request has been submitted on MakersBnB!"
+      body = "You submitted a booking request for: '#{space_name}' on MakersBnb."
+      confirmation_string = "Booking request submitted! Confirmation email sent."
+    end
+
+    send_mail(recipient, subject, body, confirmation_string)
+  end
+
+  def send_mail(recipient, subject, body, confirmation_string)
     Pony.mail({
-      to: current_user.email,
+      to: recipient.email,
       from: ENV['from'],
-      subject: "Welcome #{current_user.first_name} to MakersBnB!",
-      body: 'Thanks for signing up to MakersBnb!',
+      subject: subject,
+      body: body,
       via: :smtp,
       via_options: {
         address:              'smtp.gmail.com',
@@ -34,7 +57,7 @@ module Helpers
       }
     })
 
-    flash.next[:errors] = ['Sign-up confirmation email sent']
+    flash.next[:saved] = [confirmation_string]
   end
 
   def reject_booking_conflicts(date, range)

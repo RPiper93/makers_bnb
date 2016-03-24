@@ -4,7 +4,7 @@ feature 'Making a booking' do
     create_space
     click_button 'Sign out'
     make_request
-    expect(page).to have_content('Your booking request has been sent')
+    expect(page).to have_content('Booking request submitted!')
   end
 end
 
