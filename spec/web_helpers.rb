@@ -15,6 +15,13 @@ def create_space(name: "Sam's space",
   click_button('List a Space')
 end
 
+def update_space
+  visit('/spaces')
+  click_button('Update Space')
+  fill_in(:name, with: "Sam's NEW space")
+  click_button('Update Space')
+end
+
 def create_user(first_name: "Sam",
                 last_name: "Morgan",
                 email: "sam@email.com",
