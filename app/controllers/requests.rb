@@ -8,7 +8,7 @@ class MakersBnb < Sinatra::Base
                              user_id: current_user.id, 
                              space_id: params[:space_id])
     if request.saved?
-      flash.next[:saved] = ['Your booking request has been sent']
+      prepare_mail(:request_submitted, current_user, space.name)
       redirect('/spaces')
     end
   end
@@ -31,7 +31,7 @@ class MakersBnb < Sinatra::Base
 
   post '/request/confirm' do
     Request.first(id: params[:id]).update(status: "Confirmed") 
-
+    
     request = Request.get(params[:id])
     space = Space.get(request.space_id)
     range = (request.date_from..request.date_to)
@@ -46,8 +46,10 @@ class MakersBnb < Sinatra::Base
 
     Booking.create(date_from: request.date_from, 
                    date_to: request.date_to, 
-                   user_id:request.user_id, 
+                   user_id: request.user_id, 
                    space_id: request.space_id)
+
+    prepare_mail(:request_confirmed, User.get(request.user_id), space.name)
     redirect('/requests')
   end
 end
